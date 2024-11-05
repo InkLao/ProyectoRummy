@@ -61,7 +61,7 @@ public class VistaRegistro extends javax.swing.JFrame implements ObservadorRegis
 
         this.setVisible(modeloRegistro.getEstado());
 
-        if (cbAvatars.getSelectedItem() != null) {
+        if (cbAvatars.getSelectedItem() != null && modeloRegistro.getRutaAvatarAgrandado() != null) {
             lblAvatar.setIcon(new ImageIcon(getClass().getResource(modeloRegistro.getRutaAvatarAgrandado())));
             lblAvatar.repaint();
         }
