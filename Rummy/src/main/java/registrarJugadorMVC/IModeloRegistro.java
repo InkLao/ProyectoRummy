@@ -4,10 +4,16 @@
  */
 package registrarJugadorMVC;
 
+import java.util.List;
+import javax.swing.ImageIcon;
+
 /**
  *
  * @author carli
  */
-public interface ObservadorRegistro {
-   public void actualizarVista(IModeloRegistro modeloRegistro);
+public interface IModeloRegistro {
+
+    public boolean getEstado();
+    public List<ImageIcon> getListaAvatars();
+    public String getRutaAvatarAgrandado();
 }

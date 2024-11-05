@@ -4,6 +4,10 @@
 
 package com.mycompany.rummy;
 
+import registrarJugadorMVC.ControladorRegistro;
+import registrarJugadorMVC.ModeloRegistro;
+import registrarJugadorMVC.VistaRegistro;
+
 /**
  *
  * @author user
@@ -11,6 +15,10 @@ package com.mycompany.rummy;
 public class Rummy {
 
     public static void main(String[] args) {
-        System.out.println("Hello World!");
+        ModeloRegistro modeloRegistro= new ModeloRegistro();
+        ControladorRegistro controladorRegistro= new ControladorRegistro(modeloRegistro);
+        VistaRegistro vistaRegistro= new VistaRegistro(controladorRegistro);
+        modeloRegistro.setObservadorRegistro(vistaRegistro);
+        controladorRegistro.mostrarPantalla();
     }
 }

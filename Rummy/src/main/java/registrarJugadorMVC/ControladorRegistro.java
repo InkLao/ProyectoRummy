@@ -16,50 +16,24 @@ import javax.swing.JOptionPane;
  */
 public class ControladorRegistro {
 
-    private VistaRegistro vista;
-    private ArrayList<ModeloRegistro> jugadores;
+    private ModeloRegistro modeloRegistro;
 
-    public ControladorRegistro(VistaRegistro vista) {
-        this.vista = vista;
-        this.jugadores = new ArrayList<>();
+    public ControladorRegistro(ModeloRegistro modeloRegistro) {
+        this.modeloRegistro = modeloRegistro;
 
-        this.vista.addRegistrarListener(new RegistrarListener());
-        this.vista.addMostrarJugadoresListener(new MostrarJugadoresListener());
     }
 
-    // Clase interna para manejar el registro
-    class RegistrarListener implements ActionListener {
-
-        public void actionPerformed(ActionEvent e) {
-            String nombre = vista.getNombre();
-            String avatar = vista.getAvatar();
-            String colorFicha = vista.getColorFicha();
-
-            // Validación de campos vacíos
-            if (nombre.isEmpty() || avatar.isEmpty() || colorFicha.isEmpty()) {
-                JOptionPane.showMessageDialog(vista, "Todos los campos son obligatorios.", "Error", JOptionPane.ERROR_MESSAGE);
-                return; // No registra el jugador si hay campos vacíos
-            }
-
-            ModeloRegistro jugador = new ModeloRegistro(nombre, avatar, colorFicha);
-            jugadores.add(jugador);
-            JOptionPane.showMessageDialog(vista, "Jugador registrado: " + nombre);
-
-            // Limpiar los campos de entrada
-            vista.limpiarCampos();
-        }
+    public void seleccionarAvatar(String avatar) {
+        modeloRegistro.setEstado(true);
+        modeloRegistro.setRutaAvatar(avatar);
+        modeloRegistro.setRutaAvatarAgrandado();
+        modeloRegistro.notificar();
     }
 
-    // Clase interna para mostrar jugadores
-    class MostrarJugadoresListener implements ActionListener {
+    public void mostrarPantalla() {
+        modeloRegistro.setEstado(true);
 
-        public void actionPerformed(ActionEvent e) {
-            StringBuilder listado = new StringBuilder("Jugadores Registrados:\n");
-            for (ModeloRegistro jugador : jugadores) {
-                listado.append("Nombre: ").append(jugador.getNombre()).append(", Avatar: ").append(jugador.getAvatar())
-                        .append(", Color Ficha: ").append(jugador.getColorFicha()).append("\n");
-            }
-            JOptionPane.showMessageDialog(vista, listado.toString());
-        }
+        modeloRegistro.notificar();
     }
+
 }

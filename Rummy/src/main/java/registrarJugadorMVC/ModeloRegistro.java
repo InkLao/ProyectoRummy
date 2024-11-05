@@ -4,59 +4,99 @@
  */
 package registrarJugadorMVC;
 
-
+import java.awt.Color;
 import java.util.List;
 import java.util.ArrayList;
+import javax.swing.ImageIcon;
 
 /**
  *
  * @author user
  */
+public class ModeloRegistro implements IModeloRegistro {
 
-
-public class ModeloRegistro {
-    
+    private ObservadorRegistro observadorRegistro;
     private String nombre;
-    private String avatar;
-    private String colorFicha;
+    private String rutaAvatar;
+    private String rutaAvatarAgrandado;
+    private List<ImageIcon> listaAvatars;
+    private List<Color> colores;
+    private boolean estado;
 
-    public ModeloRegistro(String nombre, String avatar, String colorFicha) {
-        this.nombre = nombre;
-        this.avatar = avatar;
-        this.colorFicha = colorFicha;
+    public ModeloRegistro() {
+        this.listaAvatars = new ArrayList<>();
+        this.colores = new ArrayList<>();
+        this.setListaAvatars();
     }
 
-    // Getters y setters
-    public String getNombre() {
-        return nombre;
+    public void setListaAvatars() {
+        listaAvatars.add(new ImageIcon(getClass().getResource("/avatars/knight.png")));
+        listaAvatars.add(new ImageIcon(getClass().getResource("/avatars/frankestein.png")));
+        listaAvatars.add(new ImageIcon(getClass().getResource("/avatars/spock.png")));
+        listaAvatars.add(new ImageIcon(getClass().getResource("/avatars/wizard.png")));
+        listaAvatars.add(new ImageIcon(getClass().getResource("/avatars/ponyTailWoman.png")));
+        listaAvatars.add(new ImageIcon(getClass().getResource("/avatars/spikedHairWoman.png")));
+        listaAvatars.add(new ImageIcon(getClass().getResource("/avatars/shortHairWoman.png")));
+        listaAvatars.add(new ImageIcon(getClass().getResource("/avatars/studentWoman.png")));
+        listaAvatars.add(new ImageIcon(getClass().getResource("/avatars/mexicanMan.png")));
+        listaAvatars.add(new ImageIcon(getClass().getResource("/avatars/afroAmericanMan.png")));
+        listaAvatars.add(new ImageIcon(getClass().getResource("/avatars/moustacheMan.png")));
+        listaAvatars.add(new ImageIcon(getClass().getResource("/avatars/hippieMan.png")));
+
     }
 
-    public String getAvatar() {
-        return avatar;
+    public String getRutaAvatarAgrandado() {
+        return rutaAvatarAgrandado;
     }
 
-    public String getColorFicha() {
-        return colorFicha;
+    public void setRutaAvatarAgrandado() {
+        int indicePunto = rutaAvatar.lastIndexOf(".");
+        String rutaAvatarSeleccionado;
+        rutaAvatarSeleccionado = rutaAvatar.substring(0, indicePunto) + "2" + rutaAvatar.substring(indicePunto);
+        rutaAvatarSeleccionado = extractRelativePath(rutaAvatarSeleccionado);
+        System.out.println(rutaAvatarSeleccionado);
+        this.rutaAvatarAgrandado = rutaAvatarSeleccionado;
     }
 
-    // Setters
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
+    public static String extractRelativePath(String fullPath) {
+        // Buscar el índice de "classes/"
+        int index = fullPath.indexOf("classes");
+        if (index != -1) {
+            return fullPath.substring(index + "classes".length());
+        }
+        return "";  // Retornar vacío si no se encontró "classes/"
     }
 
-    public void setAvatar(String avatar) {
-        this.avatar = avatar;
+    public ObservadorRegistro getObservadorRegistro() {
+        return observadorRegistro;
     }
 
-    public void setColorFicha(String colorFicha) {
-        this.colorFicha = colorFicha;
+    public void setObservadorRegistro(ObservadorRegistro observadorRegistro) {
+        this.observadorRegistro = observadorRegistro;
     }
+
+    public List<ImageIcon> getListaAvatars() {
+        return listaAvatars;
+    }
+
+    public String getRutaAvatar() {
+        return rutaAvatar;
+    }
+
+    public void setRutaAvatar(String rutaAvatar) {
+        this.rutaAvatar = rutaAvatar;
+    }
+
+    public boolean getEstado() {
+        return estado;
+    }
+
+    public void setEstado(boolean estado) {
+        this.estado = estado;
+    }
+
+    public void notificar() {
+        observadorRegistro.actualizarVista((IModeloRegistro) this);
+    }
+
 }
-
-
-
-   
-
-
-
-
