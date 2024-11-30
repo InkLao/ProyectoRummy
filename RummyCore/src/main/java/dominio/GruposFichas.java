@@ -12,9 +12,15 @@ import java.util.List;
  */
 public class GruposFichas {
     
-    List<Ficha> grupoFicha;
+    private List<Ficha> grupoFicha;
+    private TipoGrupo tipo;
 
     public GruposFichas() {
+    }
+
+    public GruposFichas(List<Ficha> grupoFicha, TipoGrupo tipo) {
+        this.grupoFicha = grupoFicha;
+        this.tipo = tipo;
     }
 
     public List<Ficha> getGrupoFicha() {
@@ -23,6 +29,14 @@ public class GruposFichas {
 
     public void setGrupoFicha(List<Ficha> grupoFicha) {
         this.grupoFicha = grupoFicha;
+    }
+
+    public TipoGrupo getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(TipoGrupo tipo) {
+        this.tipo = tipo;
     }
     
 }

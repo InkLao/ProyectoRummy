@@ -12,9 +12,15 @@ import java.util.List;
  */
 public class Mano {
     
-    List<Ficha> fichas;
+    private List<Ficha> fichas;
+    private List<Ficha> estadoInicial;
 
     public Mano() {
+    }
+
+    public Mano(List<Ficha> fichas, List<Ficha> estadoInicial) {
+        this.fichas = fichas;
+        this.estadoInicial = estadoInicial;
     }
 
     public List<Ficha> getFichas() {
@@ -23,6 +29,14 @@ public class Mano {
 
     public void setFichas(List<Ficha> fichas) {
         this.fichas = fichas;
+    }
+
+    public List<Ficha> getEstadoInicial() {
+        return estadoInicial;
+    }
+
+    public void setEstadoInicial(List<Ficha> estadoInicial) {
+        this.estadoInicial = estadoInicial;
     }
     
 }

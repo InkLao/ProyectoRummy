@@ -12,13 +12,16 @@ import java.util.List;
  */
 public class Partida {
     
-    List<Jugador> jugadores;
-    String estado;
-    PozoFichas pozo;
-    Tablero tablero;
+    private ControlTurnos controlTurnos;
+    private String estado;
+    private PozoFichas pozo;
+    private Tablero tablero;
 
-    public Partida(List<Jugador> jugadores, String estado, PozoFichas pozo, Tablero tablero) {
-        this.jugadores = jugadores;
+    public Partida() {
+    }
+    
+    public Partida(ControlTurnos controlTurnos, String estado, PozoFichas pozo, Tablero tablero) {
+        this.controlTurnos = controlTurnos;
         this.estado = estado;
         this.pozo = pozo;
         this.tablero = tablero;

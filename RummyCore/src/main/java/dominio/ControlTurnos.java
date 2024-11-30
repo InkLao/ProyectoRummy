@@ -12,10 +12,31 @@ import java.util.List;
  */
 public class ControlTurnos {
     
-    List<Jugador> jugadores;
-    int jugadorActual;
-    
-    private void obtenerJugadorActual() {
-        System.out.println("Aqui te dare al jugador en turno");
+    private List<Jugador> jugadores;
+    private int jugadorActual;
+
+    public ControlTurnos() {
     }
+
+    public ControlTurnos(List<Jugador> jugadores, int jugadorActual) {
+        this.jugadores = jugadores;
+        this.jugadorActual = jugadorActual;
+    }
+
+    public List<Jugador> getJugadores() {
+        return jugadores;
+    }
+
+    public void setJugadores(List<Jugador> jugadores) {
+        this.jugadores = jugadores;
+    }
+
+    public int getJugadorActual() {
+        return jugadorActual;
+    }
+
+    public void setJugadorActual(int jugadorActual) {
+        this.jugadorActual = jugadorActual;
+    }
+    
 }

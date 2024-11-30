@@ -9,8 +9,32 @@ package dominio;
  * @author eduar
  */
 public class ManejadorColores {
-    TipoFicha tipo;
-    String color;
+    private TipoFicha tipo;
+    private String color;
+
+    public ManejadorColores() {
+    }
+
+    public ManejadorColores(TipoFicha tipo, String color) {
+        this.tipo = tipo;
+        this.color = color;
+    }
+
+    public TipoFicha getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(TipoFicha tipo) {
+        this.tipo = tipo;
+    }
+
+    public String getColor() {
+        return color;
+    }
+
+    public void setColor(String color) {
+        this.color = color;
+    }
     
     public void obtenerColor(TipoFicha tipo){
         System.out.println("Te daré el color de la ficha");

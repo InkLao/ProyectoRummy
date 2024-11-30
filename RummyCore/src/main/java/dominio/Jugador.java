@@ -9,17 +9,19 @@ package dominio;
  * @author eduar
  */
 public class Jugador {
-    Mano mano;
-    int puntaje;
-    ManejadorColores manejador;
+    private Mano mano;
+    private int puntaje;
+    private ManejadorColores manejador;
+    private String avatar;
 
     public Jugador() {
     }
 
-    public Jugador(Mano mano, int puntaje, ManejadorColores manejador) {
+    public Jugador(Mano mano, int puntaje, ManejadorColores manejador, String avatar) {
         this.mano = mano;
         this.puntaje = puntaje;
         this.manejador = manejador;
+        this.avatar = avatar;
     }
 
     public Mano getMano() {
@@ -45,4 +47,13 @@ public class Jugador {
     public void setManejador(ManejadorColores manejador) {
         this.manejador = manejador;
     }
+
+    public String getAvatar() {
+        return avatar;
+    }
+
+    public void setAvatar(String avatar) {
+        this.avatar = avatar;
+    }
+    
 }

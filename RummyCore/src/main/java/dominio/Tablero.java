@@ -12,9 +12,13 @@ import java.util.List;
  */
 public class Tablero {
     
-    List<GruposFichas> fichasTablero;
+    private List<GruposFichas> fichasTablero;
 
     public Tablero() {
+    }
+
+    public Tablero(List<GruposFichas> fichasTablero) {
+        this.fichasTablero = fichasTablero;
     }
 
     public List<GruposFichas> getFichasTablero() {

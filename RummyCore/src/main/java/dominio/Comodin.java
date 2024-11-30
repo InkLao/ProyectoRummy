@@ -8,6 +8,6 @@ package dominio;
  *
  * @author eduar
  */
-public class Comodin {
+public class Comodin extends Ficha {
     
 }
