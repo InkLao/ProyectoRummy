@@ -55,5 +55,9 @@ public class Jugador {
     public void setAvatar(String avatar) {
         this.avatar = avatar;
     }
+
+    void eliminarCoincidenciasSeleccionMano() {
+        this.mano.eliminarCoincidenciasSeleccionMano();
+    }
     
 }

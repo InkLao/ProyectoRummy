@@ -10,17 +10,17 @@ import java.util.List;
  *
  * @author eduar
  */
-public class Mano {
+public class GrupoFichas {
     
     private List<Ficha> fichas;
-    private List<Ficha> estadoInicial;
+    private TipoGrupo tipo;
 
-    public Mano() {
+    public GrupoFichas() {
     }
 
-    public Mano(List<Ficha> fichas, List<Ficha> estadoInicial) {
+    public GrupoFichas(List<Ficha> fichas, TipoGrupo tipo) {
         this.fichas = fichas;
-        this.estadoInicial = estadoInicial;
+        this.tipo = tipo;
     }
 
     public List<Ficha> getFichas() {
@@ -31,15 +31,19 @@ public class Mano {
         this.fichas = fichas;
     }
 
-    public List<Ficha> getEstadoInicial() {
-        return estadoInicial;
+    public TipoGrupo getTipo() {
+        return tipo;
     }
 
-    public void setEstadoInicial(List<Ficha> estadoInicial) {
-        this.estadoInicial = estadoInicial;
+    public void setTipo(TipoGrupo tipo) {
+        this.tipo = tipo;
     }
 
-    void eliminarCoincidenciasSeleccionMano() {
+    void agregarFicha() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    void clasificarGrupo() {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
     
