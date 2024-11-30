@@ -27,14 +27,6 @@ public class Partida {
         this.tablero = tablero;
     }
 
-    public List<Jugador> getJugadores() {
-        return jugadores;
-    }
-
-    public void setJugadores(List<Jugador> jugadores) {
-        this.jugadores = jugadores;
-    }
-
     public String getEstado() {
         return estado;
     }
