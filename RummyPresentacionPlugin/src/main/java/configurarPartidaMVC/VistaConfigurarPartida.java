@@ -4,25 +4,22 @@
  */
 package configurarPartidaMVC;
 
-import java.awt.Graphics;
-import java.awt.Image;
-import javax.swing.ImageIcon;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.JOptionPane;
+
 
 /**
  *
  * @author carli
  */
-public class VistaConfigurarPartida extends javax.swing.JFrame {
+public class VistaConfigurarPartida extends javax.swing.JFrame implements ObservadorConfiguracion {
 
+    private ControladorConfigurarPartida configurarPartida;
 
-    
-    
-    /**
-     * Creates new form VistaConfigurarPartida
-     */
-    public VistaConfigurarPartida() {
+    public VistaConfigurarPartida(ControladorConfigurarPartida configurarPartida) {
         initComponents();
-       
+        this.configurarPartida = configurarPartida;
+
     }
 
   
@@ -40,13 +37,14 @@ public class VistaConfigurarPartida extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        jButton4 = new javax.swing.JButton();
-        jComboBox2 = new javax.swing.JComboBox<>();
-        jLabel6 = new javax.swing.JLabel();
-        jSpinner2 = new javax.swing.JSpinner();
-        jButton3 = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        JsNumeroComodines = new javax.swing.JSpinner();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        cbRangoFichas = new javax.swing.JComboBox<>();
+        btnCrearPartida = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
+
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -61,11 +59,16 @@ public class VistaConfigurarPartida extends javax.swing.JFrame {
 
         jButton4.setText("atras");
 
-        jComboBox2.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1-13", "1-10" }));
+        cbRangoFichas.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        cbRangoFichas.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1-13", "1-10" }));
 
-        jLabel6.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        jLabel6.setText("Rango de fichas");
+        btnCrearPartida.setText("Crear Partida");
+        btnCrearPartida.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCrearPartidaActionPerformed(evt);
+            }
+        });
+
 
         jButton3.setText("Crear Partida");
 
@@ -89,11 +92,16 @@ public class VistaConfigurarPartida extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(296, 296, 296)
-                        .addComponent(jLabel4))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(44, 44, 44)
-                        .addComponent(jButton4))
+                        .addGap(472, 472, 472)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(btnCrearPartida, javax.swing.GroupLayout.PREFERRED_SIZE, 268, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel3)
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel1)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(cbRangoFichas, javax.swing.GroupLayout.Alignment.LEADING, 0, 268, Short.MAX_VALUE)
+                                .addComponent(JsNumeroComodines, javax.swing.GroupLayout.Alignment.LEADING))))
+
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(329, 329, 329)
                         .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 268, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -105,18 +113,15 @@ public class VistaConfigurarPartida extends javax.swing.JFrame {
                 .addGap(46, 46, 46)
                 .addComponent(jButton4)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel4)
-                .addGap(112, 112, 112)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel5)
-                    .addComponent(jSpinner2, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(70, 70, 70)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel6))
-                .addGap(71, 71, 71)
-                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(193, Short.MAX_VALUE))
+                .addComponent(JsNumeroComodines, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(39, 39, 39)
+                .addComponent(jLabel3)
+                .addGap(18, 18, 18)
+                .addComponent(cbRangoFichas, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(92, 92, 92)
+                .addComponent(btnCrearPartida, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(195, Short.MAX_VALUE))
+
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -135,49 +140,57 @@ public class VistaConfigurarPartida extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnCrearPartidaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCrearPartidaActionPerformed
+        configurarPartida.seleccionarNumeroComodines((int) JsNumeroComodines.getValue());
+        configurarPartida.seleccionarRango(obtenerValorRango((String) cbRangoFichas.getSelectedItem()));
+        configurarPartida.asignarConfiguracionPartida();
+    }//GEN-LAST:event_btnCrearPartidaActionPerformed
+
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(VistaConfigurarPartida.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(VistaConfigurarPartida.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(VistaConfigurarPartida.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(VistaConfigurarPartida.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new VistaConfigurarPartida().setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JComboBox<String> jComboBox2;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
+    private javax.swing.JSpinner JsNumeroComodines;
+    private javax.swing.JButton btnCrearPartida;
+    private javax.swing.JComboBox<String> cbRangoFichas;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JSpinner jSpinner2;
+
     // End of variables declaration//GEN-END:variables
+
+    @Override
+    public void actualizar(IModeloConfigurarPartida modeloConfigurarPartida) {
+        if (!modeloConfigurarPartida.isVisible()) {
+            DefaultComboBoxModel<String> model = new DefaultComboBoxModel<>(modeloConfigurarPartida.getRangosDisponibles().toArray(new String[0]));
+            cbRangoFichas.setModel(model);
+        }
+
+        this.setVisible(modeloConfigurarPartida.isVisible());
+    }
+
+    @Override
+    public void mostrarMensaje(String mensaje) {
+        JOptionPane.showMessageDialog(this, mensaje, "Notificacion", JOptionPane.INFORMATION_MESSAGE);
+    }
+
+    @Override
+    public void mostrarError(String mensaje) {
+        JOptionPane.showMessageDialog(this, mensaje, "Error", JOptionPane.ERROR_MESSAGE);
+    }
+
+    private int obtenerValorRango(String str) {
+        String[] partes = str.split("-");
+
+        // Verificar que hay al menos dos partes
+        if (partes.length > 1) {
+            // Obtener la parte después del guion y convertirla a int
+            int numero = Integer.parseInt(partes[1]);
+            return numero;
+        }
+        return 0;
+    }
 }

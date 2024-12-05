@@ -58,7 +58,7 @@ public class VistaRegistro extends javax.swing.JFrame implements ObservadorRegis
 
     @Override
     public void actualizar(IModeloRegistro modeloRegistro) {
-        if (!this.isVisible()) {
+        if (!modeloRegistro.getVisible()) {
             DefaultComboBoxModel<ImageIcon> model = new DefaultComboBoxModel<>(modeloRegistro.getListaAvatars().toArray(new ImageIcon[0]));
             cbAvatars.setModel(model);
         }
@@ -93,7 +93,6 @@ public class VistaRegistro extends javax.swing.JFrame implements ObservadorRegis
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         btnRegistrar = new javax.swing.JButton();
-        registrar = new javax.swing.JButton();
         cbAvatars = new javax.swing.JComboBox<>();
         jPanel2 = new javax.swing.JPanel();
         btnColorFicha1 = new javax.swing.JButton();
@@ -134,9 +133,7 @@ public class VistaRegistro extends javax.swing.JFrame implements ObservadorRegis
             }
         });
 
-        registrar.setText("regresar");
-
-        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel2.setBackground(new java.awt.Color(204, 204, 204));
 
         btnColorFicha1.setText("Elegir");
         btnColorFicha1.setMaximumSize(new java.awt.Dimension(75, 23));
@@ -233,9 +230,6 @@ public class VistaRegistro extends javax.swing.JFrame implements ObservadorRegis
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(31, 31, 31)
-                        .addComponent(registrar))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(247, 247, 247)
                         .addComponent(jLabel1))
                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -266,9 +260,7 @@ public class VistaRegistro extends javax.swing.JFrame implements ObservadorRegis
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(39, 39, 39)
-                .addComponent(registrar)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(68, 68, 68)
                 .addComponent(jLabel1)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -371,7 +363,6 @@ public class VistaRegistro extends javax.swing.JFrame implements ObservadorRegis
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JLabel lblAvatar;
-    private javax.swing.JButton registrar;
     private javax.swing.JTextField txtNombre;
     // End of variables declaration//GEN-END:variables
 

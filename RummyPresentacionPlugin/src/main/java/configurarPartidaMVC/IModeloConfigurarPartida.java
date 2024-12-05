@@ -2,16 +2,16 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Interface.java to edit this template
  */
-package registrarJugadorMVC;
+package configurarPartidaMVC;
 
-import dtos.ModeloRegistroDTO;
-import dtos.RespuestaDTO;
+import java.util.List;
 
 /**
  *
  * @author carli
  */
-public interface ObservadorModeloRegistro {
+public interface IModeloConfigurarPartida {
+        public List<String> getRangosDisponibles();
+         public boolean isVisible();
 
-    public void actualizarModeloRegistro(RespuestaDTO respuesta);
 }

@@ -16,8 +16,28 @@ public class Partida {
     private String estado;
     private PozoFichas pozo;
     private Tablero tablero;
+    private int numeroComodines;
+    private int rangoFichas;
 
     public Partida() {
+        controlTurnos = new ControlTurnos();
+        pozo = new PozoFichas();
+        tablero = new Tablero();
+    }
+
+    public Partida(String estado, int numeroComodines, int rangoFichas) {
+        this.estado = estado;
+        this.numeroComodines = numeroComodines;
+        this.rangoFichas = rangoFichas;
+    }
+
+    public Partida(ControlTurnos controlTurnos, String estado, PozoFichas pozo, Tablero tablero, int numeroComodines, int rangoFichas) {
+        this.controlTurnos = controlTurnos;
+        this.estado = estado;
+        this.pozo = pozo;
+        this.tablero = tablero;
+        this.numeroComodines = numeroComodines;
+        this.rangoFichas = rangoFichas;
     }
 
     public Partida(ControlTurnos controlTurnos, String estado, PozoFichas pozo, Tablero tablero) {
@@ -49,6 +69,30 @@ public class Partida {
 
     public void setTablero(Tablero tablero) {
         this.tablero = tablero;
+    }
+
+    public ControlTurnos getControlTurnos() {
+        return controlTurnos;
+    }
+
+    public void setControlTurnos(ControlTurnos controlTurnos) {
+        this.controlTurnos = controlTurnos;
+    }
+
+    public int getNumeroComodines() {
+        return numeroComodines;
+    }
+
+    public void setNumeroComodines(int numeroComodines) {
+        this.numeroComodines = numeroComodines;
+    }
+
+    public int getRangoFichas() {
+        return rangoFichas;
+    }
+
+    public void setRangoFichas(int rangoFichas) {
+        this.rangoFichas = rangoFichas;
     }
 
     // LOGICA
@@ -90,40 +134,40 @@ public class Partida {
 
         }
     }
-    
+
     public void validarGruposTablero() {
         this.tablero.validarGrupos();
     }
-    
+
     public boolean validarTiradaJugador() {
         // bandera que indica si la tirada del jugador es válida
         boolean tiradaValida = true;
-        
+
         Jugador jugadorActual = this.controlTurnos.obtenerJugadorActual();
-        
+
         // si un grupo fue cortado y el judaro no ha realizado la tirada inicial
         if (this.controlTurnos.isGrupoCortado() && jugadorActual.isTiradaInicial()) {
             // se invalida el movimiento, porque el jugador no debe cortar turnos en la tirada inicial
             tiradaValida = false;
         }
-        
+
         // si el jugador no alcanzó los 30 puntos y es la tirada inicial
         if (jugadorActual.getPuntaje() < 30 && jugadorActual.isTiradaInicial()) {
             // se invalida el movimiento, porque para que la tirada inicial sea válida debe alcanzar los 30 puntos
             tiradaValida = false;
         }
-        
+
         return tiradaValida;
     }
-    
+
     public void pasarTurno() {
         this.controlTurnos.pasarTurno();
     }
-    
+
     public void jalarFicha() {
         this.pozo.jalarFicha();
     }
-    
+
     public void agregarFichaMano(Ficha ficha) {
         this.controlTurnos.agregarFichaMano(ficha);
     }
