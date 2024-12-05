@@ -4,10 +4,22 @@
  */
 package comunicacion;
 
+import dtos.MensajeDTO;
+import dtos.ModeloRegistroDTO;
+import java.awt.Color;
+import java.util.List;
+
 /**
  *
  * @author carli
  */
-public class FachadaCore {
+public class FachadaCore implements InterfazGraficaPlugin{
+    ClienteSocket socket;
+    @Override
+    public void crearJugador(String nombre, String avatar, List<Color> colores) {
+        
+        MensajeDTO mensajeDTO= new MensajeDTO("REGISTRAR_JUGADOR", new ModeloRegistroDTO(avatar, colores, nombre));
+       socket.mandarMensaje(mensajeDTO);
+    }
     
 }

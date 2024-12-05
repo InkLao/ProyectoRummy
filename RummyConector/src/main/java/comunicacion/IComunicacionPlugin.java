@@ -4,7 +4,8 @@
  */
 package comunicacion;
 
-import dtos.MensajeDTO;
+import dtos.RespuestaDTO;
+import java.net.Socket;
 
 /**
  *
@@ -12,13 +13,13 @@ import dtos.MensajeDTO;
  */
 public interface IComunicacionPlugin {
 
-    public void transmitirMensaje(MensajeDTO mensaje);
+    public void transmitirMensaje(RespuestaDTO respuesta);
 
-    public void transmitirALosDemas(String idCliente, MensajeDTO mensaje);
+    public void transmitirALosDemas(Socket cliente, RespuestaDTO respuesta);
 
-    public void suscribirCliente(IComunicacionCliente cliente);
+    public void suscribirCliente(Socket cliente);
 
-    public void removerCliente(IComunicacionCliente cliente);
+    public void removerCliente(Socket cliente);
 
-    public void transmitirACliente(IComunicacionCliente cliente, MensajeDTO mensaje);
+    public void transmitirACliente(Socket cliente, RespuestaDTO respuesta);
 }

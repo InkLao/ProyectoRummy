@@ -7,6 +7,7 @@ package comunicacion;
 import dominio.FachadaGraficaCore;
 import dtos.MensajeDTO;
 import dtos.RespuestaDTO;
+import java.net.Socket;
 
 /**
  *
@@ -22,7 +23,7 @@ public class Protocolo {
         this.comunicacionPlugin = comunicacionPlugin;
     }
 
-    public void ejecutarAccion(IComunicacionCliente cliente, MensajeDTO mensaje) {
+    public void ejecutarAccion(Socket cliente, MensajeDTO mensaje) {
         if (mensaje == null || mensaje.getAccion() == null) {
             enviarError(cliente, "Mensaje o acción no puede ser nula.");
             return;
@@ -61,42 +62,42 @@ public class Protocolo {
     }
     // Métodos para manejar acciones específicas
 
-    private void registrarJugador(IComunicacionCliente cliente, MensajeDTO mensaje) {
+    private void registrarJugador(Socket cliente, MensajeDTO mensaje) {
 //        JugadorDTO jugadorDTO = (JugadorDTO) mensaje.getContenido();
 //        boolean resultado = fachadaCore.registrarJugador(jugadorDTO);
 //        cliente.enviarMensaje(new RespuestaDTO("REGISTRAR_JUGADOR", resultado));
     }
 
-    private void configurarPartida(IComunicacionCliente cliente, MensajeDTO mensaje) {
+    private void configurarPartida(Socket cliente, MensajeDTO mensaje) {
 //        ConfiguracionPartidaDTO configuracionDTO = (ConfiguracionPartidaDTO) mensaje.getContenido();
 //        boolean resultado = fachadaCore.configurarPartida(configuracionDTO);
 //        cliente.enviarMensaje(new RespuestaDTO("CONFIGURAR_PARTIDA", resultado));
     }
 
-    private void iniciarPartida(IComunicacionCliente cliente, MensajeDTO mensaje) {
+    private void iniciarPartida(Socket cliente, MensajeDTO mensaje) {
 //        boolean resultado = fachadaCore.iniciarPartida();
 //        cliente.enviarMensaje(new RespuestaDTO("INICIAR_PARTIDA", resultado));
     }
 
-    private void ejecutarTurno(IComunicacionCliente cliente, MensajeDTO mensaje) {
+    private void ejecutarTurno(Socket cliente, MensajeDTO mensaje) {
 //        TurnoDTO turnoDTO = (TurnoDTO) mensaje.getContenido();
 //        boolean resultado = fachadaCore.ejecutarTurno(turnoDTO);
 //        cliente.enviarMensaje(new RespuestaDTO("JUGAR_TURNO", resultado));
     }
 
-    private void suscribirCliente(IComunicacionCliente cliente) {
+    private void suscribirCliente(Socket cliente) {
         comunicacionPlugin.suscribirCliente(cliente);
         System.out.println("cliente mandado a suscribir");
     }
 
-    private void removerCliente(IComunicacionCliente cliente) {
+    private void removerCliente(Socket cliente) {
         comunicacionPlugin.removerCliente(cliente);
         System.out.println("cliente mandado a remover");
     }
 
     // Método para manejar errores y enviar respuesta al cliente
-    private void enviarError(IComunicacionCliente cliente, String errorMensaje) {
-        cliente.mandarMensaje(new RespuestaDTO("ERROR", false, errorMensaje));
+    private void enviarError(Socket cliente, String errorMensaje) {
+        comunicacionPlugin.transmitirACliente(cliente,new RespuestaDTO("ERROR", false, errorMensaje));
     }
 
 }

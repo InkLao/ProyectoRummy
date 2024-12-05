@@ -12,5 +12,4 @@ import dtos.RespuestaDTO;
  */
 public interface IComunicacionCliente {
   public void mandarMensaje(RespuestaDTO respuesta);
-  public int getIdCliente();
 }

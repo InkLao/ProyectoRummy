@@ -23,14 +23,12 @@ public class Server {
     private boolean isRunning;
     private ExecutorService threadPool; // Para manejar clientes con hilos.
     private Protocolo protocolo;
-    private AtomicInteger clientCounter; // Contador para IDs únicos
 
     public Server(int port, Protocolo protocolo) {
         this.port = port;
         this.protocolo=protocolo;
         this.isRunning = false;
         this.threadPool = Executors.newCachedThreadPool();
-        this.clientCounter = new AtomicInteger(1000); // Inicia en 1
 
     }
 
@@ -50,15 +48,14 @@ public class Server {
             try {
                 System.out.println("Esperando conexiones de clientes...");
                 Socket clientSocket = serverSocket.accept(); // Espera una conexión.
-                int clientId = clientCounter.getAndIncrement();
                 System.out.println("Cliente conectado: " + clientSocket.getInetAddress());
 
                 // Crea un manejador de cliente y lo ejecuta en un hilo.
-                ManejadorCliente clienteManejador = new ManejadorCliente(clientSocket, clientId, protocolo);
+                ManejadorCliente clienteManejador = new ManejadorCliente(clientSocket, protocolo);
                 threadPool.execute(clienteManejador);
                 MensajeDTO mensaje = new MensajeDTO("SUSCRIBIR_CLIENTE");
                 System.out.println(mensaje.getAccion());
-                protocolo.ejecutarAccion(clienteManejador, mensaje);
+                protocolo.ejecutarAccion(clientSocket, mensaje);
 
             } catch (IOException e) {
                 if (isRunning) {
