@@ -4,7 +4,8 @@
  */
 package comunicacion;
 
-import dtos.MensajeDTO;
+import dtos.RespuestaDTO;
+import java.net.Socket;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,7 +14,7 @@ import java.util.List;
  * @author carli
  */
 public class Comunicacion implements IComunicacionPlugin {
- public List<IComunicacionCliente> comunicacionClientes;
+ public List<Socket> comunicacionClientes;
 
     public Comunicacion() {
         comunicacionClientes= new ArrayList<>();
@@ -22,30 +23,30 @@ public class Comunicacion implements IComunicacionPlugin {
  
  
     @Override
-    public void transmitirMensaje(MensajeDTO mensaje) {
+    public void transmitirMensaje(RespuestaDTO respuesta) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     @Override
-    public void transmitirALosDemas(String idCliente, MensajeDTO mensaje) {
+    public void transmitirALosDemas(Socket cliente, RespuestaDTO respuesta) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     @Override
-    public void suscribirCliente(IComunicacionCliente cliente) {
+    public void suscribirCliente(Socket cliente) {
         comunicacionClientes.add(cliente);
         System.out.println(comunicacionClientes);
     }
 
     @Override
-    public void removerCliente(IComunicacionCliente cliente) {
+    public void removerCliente(Socket cliente) {
         comunicacionClientes.remove(cliente);
         System.out.println(comunicacionClientes);
     }
 
     @Override
-    public void transmitirACliente(IComunicacionCliente cliente, MensajeDTO mensaje) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public void transmitirACliente(Socket cliente, RespuestaDTO respuesta) {
+        
     }
     
 }

@@ -20,13 +20,11 @@ public class ManejadorCliente implements Runnable, IComunicacionCliente{
     private ObjectInputStream input;
     private ObjectOutputStream output;
     private boolean activo;
-    private int idCliente;
     private Protocolo protocolo;
 
-    public ManejadorCliente(Socket clientSocket, int idCliente, Protocolo protocolo) throws IOException {
+    public ManejadorCliente(Socket clientSocket, Protocolo protocolo) throws IOException {
         this.clientSocket = clientSocket;
         this.protocolo= protocolo;
-        this.idCliente=idCliente;
         this.output = new ObjectOutputStream(clientSocket.getOutputStream());
         this.input = new ObjectInputStream(clientSocket.getInputStream());
         this.activo = true;
@@ -72,16 +70,13 @@ public class ManejadorCliente implements Runnable, IComunicacionCliente{
             if (output != null) output.close();
             if (clientSocket != null && !clientSocket.isClosed()) clientSocket.close();
             MensajeDTO mensaje= new MensajeDTO("REMOVER_CLIENTE");
-            protocolo.ejecutarAccion(this, mensaje);
+            protocolo.ejecutarAccion(clientSocket, mensaje);
         } catch (IOException e) {
             System.err.println("Error al cerrar la conexión del cliente: " + e.getMessage());
         }
     }
 
-     @Override
-    public int getIdCliente() {
-        return idCliente;
-    }
+  
     
     
 } 
