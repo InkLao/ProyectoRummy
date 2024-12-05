@@ -25,7 +25,7 @@ public class Rummy {
         VistaRegistro vistaRegistro= new VistaRegistro(controladorRegistro);
         modeloRegistro.setObservadorRegistro(vistaRegistro);
         controladorRegistro.mostrarPantalla();
-//        
+        
 //            ClienteSocket clienteSocket=new ClienteSocket( "127.0.0.1", 5000);
 //            clienteSocket.conectar();
     }
