@@ -4,12 +4,15 @@
  */
 package menuPrincipalMVC;
 
+import configurarPartidaMVC.ControladorConfigurarPartida;
+
 /**
  *
  * @author carli
  */
 public class ControlMenuPrincipal {
     ModeloMenuPrincipal modeloMenuPrincipal;
+    ControladorConfigurarPartida configurarPartida;
     
     
 
@@ -22,5 +25,16 @@ public class ControlMenuPrincipal {
         modeloMenuPrincipal.setVisible(true);
         modeloMenuPrincipal.notificar();
     }
+    
+    public void mostraConfiguracionPartida(){
+        modeloMenuPrincipal.setVisible(false);
+        modeloMenuPrincipal.notificar();
+        configurarPartida.mostrarPantalla();
+    }
+
+    public void setConfigurarPartida(ControladorConfigurarPartida configurarPartida) {
+        this.configurarPartida = configurarPartida;
+    }
+    
     
 }

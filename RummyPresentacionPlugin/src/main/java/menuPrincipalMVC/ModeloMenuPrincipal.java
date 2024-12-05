@@ -36,5 +36,13 @@ public class ModeloMenuPrincipal implements IModeloMenu{
     public boolean getVisible() {
         return visible;
     }
+
+    public ObservadorMenu getObservadorMenu() {
+        return observadorMenu;
+    }
+
+    public void setObservadorMenu(ObservadorMenu observadorMenu) {
+        this.observadorMenu = observadorMenu;
+    }
     
 }

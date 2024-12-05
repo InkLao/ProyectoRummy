@@ -5,6 +5,7 @@
 package comunicacion;
 
 import dtos.MensajeDTO;
+import dtos.ModeloConfiguracionDTO;
 import dtos.ModeloRegistroDTO;
 import java.awt.Color;
 import java.util.List;
@@ -35,7 +36,7 @@ public class FachadaCore implements InterfazGraficaPlugin {
 
     @Override
     public void enviarConfiguracionPartida(int rango, int numeroComodines) {
-        MensajeDTO mensajeDTO = new MensajeDTO("CONFIGURAR_PARTIDA");
+        MensajeDTO mensajeDTO = new MensajeDTO("CONFIGURAR_PARTIDA",new ModeloConfiguracionDTO(rango, numeroComodines));
         socket.mandarMensaje(mensajeDTO);
     }
 

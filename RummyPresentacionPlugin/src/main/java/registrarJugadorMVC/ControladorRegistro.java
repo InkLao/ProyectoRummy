@@ -53,6 +53,7 @@ public class ControladorRegistro {
         modeloRegistro.validarDatos();
         if (modeloRegistro.isEstado()) {
             modeloRegistro.registrarJugador();
+            this.mostrarMenu();
         }
     }
     

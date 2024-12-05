@@ -121,4 +121,12 @@ public class ModeloConfigurarPartida implements IModeloConfigurarPartida, Observ
         this.rangoFichas = rangoFichas;
     }
 
+    public ObservadorConfiguracion getObservadorConfiguracion() {
+        return observadorConfiguracion;
+    }
+
+    public void setObservadorConfiguracion(ObservadorConfiguracion observadorConfiguracion) {
+        this.observadorConfiguracion = observadorConfiguracion;
+    }
+
 }
