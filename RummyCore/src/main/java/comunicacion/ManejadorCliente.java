@@ -70,12 +70,16 @@ public class ManejadorCliente implements Runnable, IComunicacionCliente{
             if (output != null) output.close();
             if (clientSocket != null && !clientSocket.isClosed()) clientSocket.close();
             MensajeDTO mensaje= new MensajeDTO("REMOVER_CLIENTE");
-            protocolo.ejecutarAccion(clientSocket, mensaje);
+            protocolo.ejecutarAccion(this, mensaje);
         } catch (IOException e) {
             System.err.println("Error al cerrar la conexión del cliente: " + e.getMessage());
         }
     }
 
+     @Override
+    public Socket getClientSocket() {
+        return clientSocket;
+    }
   
     
     

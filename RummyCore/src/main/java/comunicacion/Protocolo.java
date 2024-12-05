@@ -23,9 +23,9 @@ public class Protocolo {
         this.comunicacionPlugin = comunicacionPlugin;
     }
 
-    public void ejecutarAccion(Socket cliente, MensajeDTO mensaje) {
+    public void ejecutarAccion(ManejadorCliente manejadorCliente, MensajeDTO mensaje) {
         if (mensaje == null || mensaje.getAccion() == null) {
-            enviarError(cliente, "Mensaje o acción no puede ser nula.");
+            enviarError(manejadorCliente.getClientSocket(), "Mensaje o acción no puede ser nula.");
             return;
         }
 
@@ -35,28 +35,28 @@ public class Protocolo {
         try {
             switch (accion) {
                 case "SUSCRIBIR_CLIENTE":
-                    suscribirCliente(cliente);
+                    suscribirCliente(manejadorCliente);
                     break;
                 case "REMOVER_CLIENTE":
-                    removerCliente(cliente);
+                    removerCliente(manejadorCliente);
                     break;
                 case "REGISTRAR_JUGADOR":
-                    registrarJugador(cliente, mensaje);
+                    registrarJugador(manejadorCliente.getClientSocket(), mensaje);
                     break;
                 case "CONFIGURAR_PARTIDA":
-                    configurarPartida(cliente, mensaje);
+                    configurarPartida(manejadorCliente.getClientSocket(), mensaje);
                     break;
                 case "INICIAR_PARTIDA":
-                    iniciarPartida(cliente, mensaje);
+                    iniciarPartida(manejadorCliente.getClientSocket(), mensaje);
                     break;
                 case "JUGAR_TURNO":
-                    ejecutarTurno(cliente, mensaje);
+                    ejecutarTurno(manejadorCliente.getClientSocket(), mensaje);
                     break;
                 default:
-                    enviarError(cliente, "Acción no reconocida: " + accion);
+                    enviarError(manejadorCliente.getClientSocket(), "Acción no reconocida: " + accion);
             }
         } catch (Exception e) {
-            enviarError(cliente, "Error interno del servidor al procesar la acción.");
+            enviarError(manejadorCliente.getClientSocket(), "Error interno del servidor al procesar la acción.");
             e.printStackTrace(); // For debugging
         }
     }
@@ -85,19 +85,19 @@ public class Protocolo {
 //        cliente.enviarMensaje(new RespuestaDTO("JUGAR_TURNO", resultado));
     }
 
-    private void suscribirCliente(Socket cliente) {
-        comunicacionPlugin.suscribirCliente(cliente);
+    private void suscribirCliente(ManejadorCliente manejadorCliente) {
+        comunicacionPlugin.suscribirCliente(manejadorCliente);
         System.out.println("cliente mandado a suscribir");
     }
 
-    private void removerCliente(Socket cliente) {
-        comunicacionPlugin.removerCliente(cliente);
+    private void removerCliente(ManejadorCliente manejadorCliente) {
+        comunicacionPlugin.removerCliente(manejadorCliente);
         System.out.println("cliente mandado a remover");
     }
 
     // Método para manejar errores y enviar respuesta al cliente
     private void enviarError(Socket cliente, String errorMensaje) {
-        comunicacionPlugin.transmitirACliente(cliente,new RespuestaDTO("ERROR", false, errorMensaje));
+        comunicacionPlugin.transmitirACliente(cliente, new RespuestaDTO("ERROR", false, errorMensaje));
     }
 
 }

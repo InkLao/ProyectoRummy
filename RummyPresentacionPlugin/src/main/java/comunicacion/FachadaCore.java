@@ -15,6 +15,7 @@ import java.util.List;
  */
 public class FachadaCore implements InterfazGraficaPlugin{
     ClienteSocket socket;
+    
     @Override
     public void crearJugador(String nombre, String avatar, List<Color> colores) {
         

@@ -20,13 +20,13 @@ import registrarJugadorMVC.VistaRegistro;
 public class Rummy {
 
     public static void main(String[] args) {
-        ModeloRegistro modeloRegistro= new ModeloRegistro();
-        ControladorRegistro controladorRegistro= new ControladorRegistro(modeloRegistro);
-        VistaRegistro vistaRegistro= new VistaRegistro(controladorRegistro);
-        modeloRegistro.setObservadorRegistro(vistaRegistro);
-        controladorRegistro.mostrarPantalla();
-        
-//            ClienteSocket clienteSocket=new ClienteSocket( "127.0.0.1", 5000);
-//            clienteSocket.conectar();
+//        ModeloRegistro modeloRegistro= new ModeloRegistro();
+//        ControladorRegistro controladorRegistro= new ControladorRegistro(modeloRegistro);
+//        VistaRegistro vistaRegistro= new VistaRegistro(controladorRegistro);
+//        modeloRegistro.setObservadorRegistro(vistaRegistro);
+//        controladorRegistro.mostrarPantalla();
+//        
+            ClienteSocket clienteSocket=new ClienteSocket( "127.0.0.1", 5000);
+            clienteSocket.conectar();
     }
 }

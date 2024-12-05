@@ -26,7 +26,7 @@ public class Server {
 
     public Server(int port, Protocolo protocolo) {
         this.port = port;
-        this.protocolo=protocolo;
+        this.protocolo = protocolo;
         this.isRunning = false;
         this.threadPool = Executors.newCachedThreadPool();
 
@@ -53,9 +53,7 @@ public class Server {
                 // Crea un manejador de cliente y lo ejecuta en un hilo.
                 ManejadorCliente clienteManejador = new ManejadorCliente(clientSocket, protocolo);
                 threadPool.execute(clienteManejador);
-                MensajeDTO mensaje = new MensajeDTO("SUSCRIBIR_CLIENTE");
-                System.out.println(mensaje.getAccion());
-                protocolo.ejecutarAccion(clientSocket, mensaje);
+                protocolo.ejecutarAccion(clienteManejador, new MensajeDTO("SUSCRIBIR_CLIENTE"));
 
             } catch (IOException e) {
                 if (isRunning) {

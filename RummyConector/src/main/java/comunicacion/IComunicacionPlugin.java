@@ -6,6 +6,7 @@ package comunicacion;
 
 import dtos.RespuestaDTO;
 import java.net.Socket;
+import java.util.List;
 
 /**
  *
@@ -17,9 +18,12 @@ public interface IComunicacionPlugin {
 
     public void transmitirALosDemas(Socket cliente, RespuestaDTO respuesta);
 
-    public void suscribirCliente(Socket cliente);
+    public void suscribirCliente(IComunicacionCliente cliente);
 
-    public void removerCliente(Socket cliente);
+    public void removerCliente(IComunicacionCliente cliente);
 
     public void transmitirACliente(Socket cliente, RespuestaDTO respuesta);
+    
+        
+
 }
