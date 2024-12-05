@@ -4,6 +4,8 @@
  */
 package dominio;
 
+import java.util.List;
+
 /**
  *
  * @author eduar
@@ -13,15 +15,19 @@ public class Jugador {
     private int puntaje;
     private ManejadorColores manejador;
     private String avatar;
+    private boolean tiradaInicial;
 
     public Jugador() {
+        this.puntaje = 0;
+        this.tiradaInicial = false;
     }
 
-    public Jugador(Mano mano, int puntaje, ManejadorColores manejador, String avatar) {
+    public Jugador(Mano mano, int puntaje, ManejadorColores manejador, String avatar, boolean tiradaInicial) {
         this.mano = mano;
         this.puntaje = puntaje;
         this.manejador = manejador;
         this.avatar = avatar;
+        this.tiradaInicial = tiradaInicial;
     }
 
     public Mano getMano() {
@@ -56,8 +62,24 @@ public class Jugador {
         this.avatar = avatar;
     }
 
-    void eliminarCoincidenciasSeleccionMano() {
-        this.mano.eliminarCoincidenciasSeleccionMano();
+    void eliminarCoincidenciasSeleccionMano(List<Ficha> seleccion) {
+        this.mano.eliminarCoincidenciasSeleccionMano(seleccion);
+    }
+
+    void incrementarPuntuacion(int numero) {
+        this.puntaje += numero;
+    }
+
+    public boolean isTiradaInicial() {
+        return tiradaInicial;
+    }
+
+    public void setTiradaInicial(boolean tiradaInicial) {
+        this.tiradaInicial = tiradaInicial;
+    }
+
+    void agregarFichaMano(Ficha ficha) {
+        this.mano.agregarFicha(ficha);
     }
     
 }

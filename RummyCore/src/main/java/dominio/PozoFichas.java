@@ -5,22 +5,37 @@
 package dominio;
 
 import java.util.List;
+import java.util.Random;
 
 /**
  *
  * @author eduar
  */
 public class PozoFichas {
-    List<Ficha> tipoFichas;
+
+    List<Ficha> fichas;
 
     public PozoFichas() {
     }
 
     public List<Ficha> getTipoFichas() {
-        return tipoFichas;
+        return fichas;
     }
 
     public void setTipoFichas(List<Ficha> tipoFichas) {
-        this.tipoFichas = tipoFichas;
+        this.fichas = tipoFichas;
+    }
+
+    public Ficha jalarFicha() {
+        Ficha fichaJalada = null;
+
+        if (!fichas.isEmpty()) {
+            Random random = new Random();
+            int numeroAleatorio = random.nextInt(fichas.size());
+            fichaJalada = fichas.get(numeroAleatorio);
+            fichas.remove(fichaJalada);
+        }
+        
+        return fichaJalada;
     }
 }

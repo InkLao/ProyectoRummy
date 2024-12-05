@@ -71,10 +71,21 @@ public class Tablero {
             }
         }
         
+        // devuelve como respuesta si alguno de los grupos fue cortado
         return grupoCortado;
     }
 
-    void agregarGrupo() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public void agregarGrupo(GrupoFichas grupo) {
+        this.grupos.add(grupo);
+    }
+
+    public boolean validarGrupos() {
+        // si alguno de los grupos del tablero es invalido, retorna falso, verdadero en caso contrario
+        for (GrupoFichas grupo: this.grupos) {
+            if (grupo.getTipo() == TipoGrupo.INVALIDO) {
+                return false;
+            }
+        }
+        return true;
     }
 }

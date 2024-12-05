@@ -49,15 +49,26 @@ public class ControlTurnos {
     }
 
     void incrementarPuntuacion(int numero) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        this.obtenerJugadorActual().incrementarPuntuacion(numero);
     }
     
     public Jugador obtenerJugadorActual() {
         return this.jugadores.get(jugadorActual);
     }
 
-    void eliminarCoincidenciasSeleccionMano() {
-        this.obtenerJugadorActual().eliminarCoincidenciasSeleccionMano();
+    void eliminarCoincidenciasSeleccionMano(List<Ficha> seleccion) {
+        this.obtenerJugadorActual().eliminarCoincidenciasSeleccionMano(seleccion);
+    }
+
+    public void pasarTurno() {
+        this.jugadorActual++;
+        if (jugadorActual >= 4) {
+            this.jugadorActual = 0;
+        }
+    }
+    
+    public void agregarFichaMano(Ficha ficha) {
+        this.obtenerJugadorActual().agregarFichaMano(ficha);
     }
     
 }

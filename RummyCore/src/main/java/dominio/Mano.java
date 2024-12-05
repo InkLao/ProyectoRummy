@@ -4,6 +4,7 @@
  */
 package dominio;
 
+import java.util.Iterator;
 import java.util.List;
 
 /**
@@ -39,8 +40,24 @@ public class Mano {
         this.estadoInicial = estadoInicial;
     }
 
-    void eliminarCoincidenciasSeleccionMano() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    void eliminarCoincidenciasSeleccionMano(List<Ficha> seleccion) {
+        // selecciona una ficha de seleccion
+        for (Ficha fichaSeleccion: seleccion) {
+            Iterator<Ficha> iterador = this.fichas.iterator();
+            while (iterador.hasNext()) {
+                // selecciona una ficha de la mano
+                Ficha fichaMano = iterador.next();
+                // si la ficha de la mano coincide con la de la seleccion
+                if (fichaMano.getCodigo() == fichaSeleccion.getCodigo()) {
+                    // la ficha se elimina de la mano
+                    iterador.remove();
+                }
+            }
+        }
+    }
+    
+    public void agregarFicha(Ficha ficha) {
+        this.fichas.add(ficha);
     }
     
 }

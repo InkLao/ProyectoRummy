@@ -68,7 +68,7 @@ public class Partida {
             for (Ficha ficha : seleccion) {
 
                 // se agrega la ficha seleccionada al grupo
-                grupoPorColocar.agregarFicha();
+                grupoPorColocar.agregarFicha(ficha);
 
                 // se incrementa la puntuación del jugador por la ficha colocada
                 if (ficha instanceof FichaNumerica) { // si la ficha es numerica
@@ -83,12 +83,49 @@ public class Partida {
             grupoPorColocar.clasificarGrupo();
 
             // se agrega el grupo al tablero
-            this.tablero.agregarGrupo();
+            this.tablero.agregarGrupo(grupoPorColocar);
 
             // se eliminan las fichas que se seleccionaron de la mano para colocarlas en el grupo (se elimina la referencia de la mano a la ficha, no la ficha)
-            this.controlTurnos.eliminarCoincidenciasSeleccionMano();
+            this.controlTurnos.eliminarCoincidenciasSeleccionMano(seleccion);
 
         }
+    }
+    
+    public void validarGruposTablero() {
+        this.tablero.validarGrupos();
+    }
+    
+    public boolean validarTiradaJugador() {
+        // bandera que indica si la tirada del jugador es válida
+        boolean tiradaValida = true;
+        
+        Jugador jugadorActual = this.controlTurnos.obtenerJugadorActual();
+        
+        // si un grupo fue cortado y el judaro no ha realizado la tirada inicial
+        if (this.controlTurnos.isGrupoCortado() && jugadorActual.isTiradaInicial()) {
+            // se invalida el movimiento, porque el jugador no debe cortar turnos en la tirada inicial
+            tiradaValida = false;
+        }
+        
+        // si el jugador no alcanzó los 30 puntos y es la tirada inicial
+        if (jugadorActual.getPuntaje() < 30 && jugadorActual.isTiradaInicial()) {
+            // se invalida el movimiento, porque para que la tirada inicial sea válida debe alcanzar los 30 puntos
+            tiradaValida = false;
+        }
+        
+        return tiradaValida;
+    }
+    
+    public void pasarTurno() {
+        this.controlTurnos.pasarTurno();
+    }
+    
+    public void jalarFicha() {
+        this.pozo.jalarFicha();
+    }
+    
+    public void agregarFichaMano(Ficha ficha) {
+        this.controlTurnos.agregarFichaMano(ficha);
     }
 
 }
