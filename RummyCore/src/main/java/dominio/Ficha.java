@@ -10,4 +10,21 @@ package dominio;
  */
 public class Ficha {
     
+    private int codigo;
+
+    public Ficha() {
+    }
+
+    public Ficha(int codigo) {
+        this.codigo = codigo;
+    }
+
+    public int getCodigo() {
+        return codigo;
+    }
+
+    public void setCodigo(int codigo) {
+        this.codigo = codigo;
+    }
+    
 }

@@ -14,6 +14,7 @@ public class ControlTurnos {
     
     private List<Jugador> jugadores;
     private int jugadorActual;
+    private boolean grupoCortado;
 
     public ControlTurnos() {
     }
@@ -37,6 +38,37 @@ public class ControlTurnos {
 
     public void setJugadorActual(int jugadorActual) {
         this.jugadorActual = jugadorActual;
+    }
+
+    public boolean isGrupoCortado() {
+        return grupoCortado;
+    }
+
+    public void setGrupoCortado(boolean grupoCortado) {
+        this.grupoCortado = grupoCortado;
+    }
+
+    void incrementarPuntuacion(int numero) {
+        this.obtenerJugadorActual().incrementarPuntuacion(numero);
+    }
+    
+    public Jugador obtenerJugadorActual() {
+        return this.jugadores.get(jugadorActual);
+    }
+
+    void eliminarCoincidenciasSeleccionMano(List<Ficha> seleccion) {
+        this.obtenerJugadorActual().eliminarCoincidenciasSeleccionMano(seleccion);
+    }
+
+    public void pasarTurno() {
+        this.jugadorActual++;
+        if (jugadorActual >= 4) {
+            this.jugadorActual = 0;
+        }
+    }
+    
+    public void agregarFichaMano(Ficha ficha) {
+        this.obtenerJugadorActual().agregarFichaMano(ficha);
     }
     
 }
