@@ -5,7 +5,9 @@
 package comunicacion;
 
 import dominio.FachadaGraficaCore;
+import dtos.JugadorDTO;
 import dtos.MensajeDTO;
+import dtos.ModeloRegistroDTO;
 import dtos.RespuestaDTO;
 import java.net.Socket;
 
@@ -17,6 +19,7 @@ public class Protocolo {
 
     private FachadaGraficaCore fachadaGraficaCore; // Interacción con el núcleo del sistema
     private IComunicacionPlugin comunicacionPlugin;
+    private Socket socketActual;
 
     public Protocolo(FachadaGraficaCore fachadaGraficaCore, IComunicacionPlugin comunicacionPlugin) {
         this.fachadaGraficaCore = fachadaGraficaCore;
@@ -63,9 +66,14 @@ public class Protocolo {
     // Métodos para manejar acciones específicas
 
     private void registrarJugador(Socket cliente, MensajeDTO mensaje) {
-//        JugadorDTO jugadorDTO = (JugadorDTO) mensaje.getContenido();
+        this.socketActual = cliente;
+        ModeloRegistroDTO jugadorDTO = (ModeloRegistroDTO) mensaje.getDto();
+        fachadaGraficaCore.crearJugador(jugadorDTO.getNombre(), jugadorDTO.getAvatar(), jugadorDTO.getColores());
+        fachadaGraficaCore.registrarJugador(cliente, fachadaGraficaCore.getJugadorActual());
+        System.out.println("Jugador mandado a registrarse");
+
 //        boolean resultado = fachadaCore.registrarJugador(jugadorDTO);
-//        cliente.enviarMensaje(new RespuestaDTO("REGISTRAR_JUGADOR", resultado));
+        comunicacionPlugin.transmitirACliente(cliente, new RespuestaDTO(mensaje.getAccion(), true, "Exito al registrar al jugador", jugadorDTO));
     }
 
     private void configurarPartida(Socket cliente, MensajeDTO mensaje) {
@@ -91,6 +99,7 @@ public class Protocolo {
     }
 
     private void removerCliente(ManejadorCliente manejadorCliente) {
+        fachadaGraficaCore.removerJugador(socketActual);
         comunicacionPlugin.removerCliente(manejadorCliente);
         System.out.println("cliente mandado a remover");
     }

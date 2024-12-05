@@ -11,6 +11,7 @@ import java.util.List;
  * @author eduar
  */
 public class Jugador {
+    private String nombre;
     private Mano mano;
     private int puntaje;
     private ManejadorColores manejador;
@@ -81,5 +82,14 @@ public class Jugador {
     void agregarFichaMano(Ficha ficha) {
         this.mano.agregarFicha(ficha);
     }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+    
     
 }

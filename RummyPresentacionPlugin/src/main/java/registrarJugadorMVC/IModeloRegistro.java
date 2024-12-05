@@ -14,7 +14,7 @@ import javax.swing.ImageIcon;
  */
 public interface IModeloRegistro {
 
-    public boolean getEstado();
+    public boolean getVisible();
 
     public List<ImageIcon> getListaAvatars();
 

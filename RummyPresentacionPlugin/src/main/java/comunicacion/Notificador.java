@@ -17,6 +17,16 @@ public class Notificador {
     ObservadorModeloRegistro modeloRegistro;
     RespuestaDTO respuestaDTO;
 
+    public Notificador(ObservadorModeloRegistro modeloRegistro) {
+        this.modeloRegistro = modeloRegistro;
+    }
+
+    public void setRespuestaDTO(RespuestaDTO respuestaDTO) {
+        this.respuestaDTO = respuestaDTO;
+    }
+    
+    
+
     public void notificarATodos() {
         if (respuestaDTO.getDatos() instanceof ModeloRegistroDTO) {
             modeloRegistro.actualizarModeloRegistro((ModeloRegistroDTO) respuestaDTO.getDatos());
