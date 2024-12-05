@@ -9,5 +9,11 @@ package registrarJugadorMVC;
  * @author carli
  */
 public interface ObservadorRegistro {
-   public void actualizar(IModeloRegistro modeloRegistro);
+
+    public void actualizar(IModeloRegistro modeloRegistro);
+
+    public void mostrarMensaje(String mensaje);
+
+    public void mostrarError(String mensaje);
+
 }

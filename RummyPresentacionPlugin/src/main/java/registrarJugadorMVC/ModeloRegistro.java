@@ -4,6 +4,7 @@
  */
 package registrarJugadorMVC;
 
+import comunicacion.FachadaCore;
 import dtos.ModeloRegistroDTO;
 import java.awt.Color;
 import java.util.List;
@@ -17,16 +18,20 @@ import javax.swing.ImageIcon;
 public class ModeloRegistro implements IModeloRegistro, ObservadorModeloRegistro {
 
     private ObservadorRegistro observadorRegistro;
+    private FachadaCore core;
     private String nombre;
     private String rutaAvatar;
     private String rutaAvatarAgrandado;
     private List<ImageIcon> listaAvatars;
     private List<Color> colores;
+    private boolean visible;
     private boolean estado;
 
-    public ModeloRegistro() {
+    public ModeloRegistro(FachadaCore core) {
+        this.core = core;
         this.listaAvatars = new ArrayList<>();
         this.colores = new ArrayList<>();
+        this.estado = true;
         this.setColores();
         this.setListaAvatars();
     }
@@ -77,6 +82,14 @@ public class ModeloRegistro implements IModeloRegistro, ObservadorModeloRegistro
         colores.set(index, color);
     }
 
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
     public static String extractRelativePath(String fullPath) {
         // Buscar el índice de "classes/"
         int index = fullPath.indexOf("classes");
@@ -108,12 +121,20 @@ public class ModeloRegistro implements IModeloRegistro, ObservadorModeloRegistro
     }
 
     @Override
-    public boolean getEstado() {
+    public boolean getVisible() {
+        return visible;
+    }
+
+    public boolean isEstado() {
         return estado;
     }
 
     public void setEstado(boolean estado) {
         this.estado = estado;
+    }
+
+    public void setVisible(boolean visble) {
+        this.visible = visble;
     }
 
     public void notificar() {
@@ -122,11 +143,54 @@ public class ModeloRegistro implements IModeloRegistro, ObservadorModeloRegistro
 
     @Override
     public void actualizarModeloRegistro(ModeloRegistroDTO modeloRegistroDTO) {
-        this.colores=modeloRegistroDTO.getColores();
-        this.nombre= modeloRegistroDTO.getNombre();
-        this.rutaAvatar= modeloRegistroDTO.getAvatar();
+        this.colores = modeloRegistroDTO.getColores();
+        this.nombre = modeloRegistroDTO.getNombre();
+        this.rutaAvatar = modeloRegistroDTO.getAvatar();
         this.setRutaAvatarAgrandado();
         this.notificar();
+        this.notificarMensaje("Se ha registrado correctamente");
+    }
+
+    public void registrarJugador() {
+        core.crearJugador(nombre, rutaAvatar, colores);
+    }
+
+    public void notificarError(String mensaje) {
+        if (observadorRegistro != null) {
+            observadorRegistro.mostrarError(mensaje);
+        }
+    }
+    
+    public void notificarMensaje(String mensaje) {
+        if (observadorRegistro != null) {
+            observadorRegistro.mostrarMensaje(mensaje);
+        }
+    }
+
+    public void validarDatos() {
+        try {
+            if (nombre == null || nombre.trim().isEmpty()) {
+                throw new IllegalArgumentException("El nombre no puede estar vacío.");
+            }
+            if (nombre.length() < 3 || nombre.length() > 20) {
+                throw new IllegalArgumentException("El nombre debe tener entre 3 y 20 caracteres.");
+            }
+            if (rutaAvatar == null || rutaAvatar.trim().isEmpty()) {
+                throw new IllegalArgumentException("El avatar no puede estar vacío.");
+            }
+            if (!(rutaAvatar.endsWith(".jpg") || rutaAvatar.endsWith(".png") || rutaAvatar.endsWith(".jpeg"))) {
+                throw new IllegalArgumentException("El avatar debe ser una URL válida de imagen (jpg, png, gif).");
+            }
+            if (colores == null || colores.isEmpty()) {
+                throw new IllegalArgumentException("Debe proporcionarse al menos un color.");
+            }
+            if (colores.size() > 5) {
+                throw new IllegalArgumentException("No se pueden proporcionar más de 5 colores.");
+            }
+        } catch (IllegalArgumentException e) {
+            setEstado(false);
+            notificarError(e.getMessage());
+        }
     }
 
 }

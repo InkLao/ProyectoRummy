@@ -14,12 +14,12 @@ import java.util.List;
 public class JugadorDTO {
     private String nombre;
     private String avatar;
-    private List<Color> tiradaInicial;
+    private List<Color> colores;
 
-    public JugadorDTO(String nombre, String avatar, List<Color> tiradaInicial) {
+    public JugadorDTO(String nombre, String avatar, List<Color> colores) {
         this.nombre = nombre;
         this.avatar = avatar;
-        this.tiradaInicial = tiradaInicial;
+        this.colores = colores;
     }
 
     public String getNombre() {
@@ -38,12 +38,12 @@ public class JugadorDTO {
         this.avatar = avatar;
     }
 
-    public List<Color> getTiradaInicial() {
-        return tiradaInicial;
+    public List<Color> getColores() {
+        return colores;
     }
 
-    public void setTiradaInicial(List<Color> tiradaInicial) {
-        this.tiradaInicial = tiradaInicial;
+    public void setColores(List<Color> colores) {
+        this.colores = colores;
     }
  
 }

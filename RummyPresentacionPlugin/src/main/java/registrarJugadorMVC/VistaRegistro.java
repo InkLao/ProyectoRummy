@@ -63,7 +63,7 @@ public class VistaRegistro extends javax.swing.JFrame implements ObservadorRegis
             cbAvatars.setModel(model);
         }
 
-        this.setVisible(modeloRegistro.getEstado());
+        this.setVisible(modeloRegistro.getVisible());
 
         if (cbAvatars.getSelectedItem() != null && modeloRegistro.getRutaAvatarAgrandado() != null) {
             lblAvatar.setIcon(new ImageIcon(getClass().getResource(modeloRegistro.getRutaAvatarAgrandado())));
@@ -312,7 +312,8 @@ public class VistaRegistro extends javax.swing.JFrame implements ObservadorRegis
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarActionPerformed
-        // TODO add your handling code here:
+        controladorRegistro.seleccionarNombre(txtNombre.getText());
+        controladorRegistro.registrarJugador();
     }//GEN-LAST:event_btnRegistrarActionPerformed
 
     private void btnColorFicha1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnColorFicha1ActionPerformed
@@ -373,5 +374,15 @@ public class VistaRegistro extends javax.swing.JFrame implements ObservadorRegis
     private javax.swing.JButton registrar;
     private javax.swing.JTextField txtNombre;
     // End of variables declaration//GEN-END:variables
+
+    @Override
+    public void mostrarMensaje(String mensaje) {
+    JOptionPane.showMessageDialog(this, mensaje, "Notificacion", JOptionPane.INFORMATION_MESSAGE);
+    }
+
+    @Override
+    public void mostrarError(String mensaje) {
+    JOptionPane.showMessageDialog(this, mensaje, "Error", JOptionPane.ERROR_MESSAGE);
+    }
 
 }

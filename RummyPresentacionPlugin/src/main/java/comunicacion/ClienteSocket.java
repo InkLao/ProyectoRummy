@@ -54,16 +54,19 @@ public class ClienteSocket implements Runnable {
     // Método que implementa la interfaz Runnable
     @Override
     public void run() {
-        while (isRunning) {
-            try {
-                RespuestaDTO mensajeRecibido = recibirMensaje();  // Recibir mensaje del servidor
-                if (mensajeRecibido != null) {
-                    // Procesar el mensaje recibido
-                    System.out.println("Mensaje recibido del servidor: " + mensajeRecibido);
+        try {
+            while (isRunning) {
+                Object mensaje = in.readObject(); // Leer mensajes del cliente.
+                if (mensaje instanceof RespuestaDTO) {
+                    recibirMensaje((RespuestaDTO) mensaje);
+                } else {
+                    System.out.println("Mensaje desconocido recibido del servidor.");
                 }
-            } catch (Exception e) {
-                System.err.println("Error en la comunicación: " + e.getMessage());
             }
+        } catch (IOException | ClassNotFoundException e) {
+            System.err.println("Error en la comunicación con el servidor: " + e.getMessage());
+        } catch (Exception ex) {
+            System.err.println("Error en la comunicación: " + ex.getMessage());
         }
     }
 
@@ -78,13 +81,9 @@ public class ClienteSocket implements Runnable {
     }
 
     // Método para recibir un mensaje del servidor.
-    public RespuestaDTO recibirMensaje() {
-        try {
-            return (RespuestaDTO) in.readObject();  // Leer un mensaje del servidor.
-        } catch (IOException | ClassNotFoundException e) {
-            System.err.println("Error al recibir mensaje del servidor: " + e.getMessage());
-            return null;
-        }
+    public void recibirMensaje(RespuestaDTO respuesta) {
+        notificador.setRespuestaDTO(respuesta);
+        notificador.notificarATodos();
     }
 
     // Método para cerrar la conexión con el servidor.
@@ -103,6 +102,10 @@ public class ClienteSocket implements Runnable {
         } catch (IOException e) {
             System.err.println("Error al cerrar la conexión con el servidor: " + e.getMessage());
         }
+    }
+
+    public void setNotificador(Notificador notificador) {
+        this.notificador = notificador;
     }
 
 }

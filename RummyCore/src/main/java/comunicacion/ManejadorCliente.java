@@ -15,8 +15,9 @@ import java.net.Socket;
  *
  * @author carli
  */
-public class ManejadorCliente implements Runnable, IComunicacionCliente{
-     private Socket clientSocket;
+public class ManejadorCliente implements Runnable, IComunicacionCliente {
+
+    private Socket clientSocket;
     private ObjectInputStream input;
     private ObjectOutputStream output;
     private boolean activo;
@@ -24,7 +25,7 @@ public class ManejadorCliente implements Runnable, IComunicacionCliente{
 
     public ManejadorCliente(Socket clientSocket, Protocolo protocolo) throws IOException {
         this.clientSocket = clientSocket;
-        this.protocolo= protocolo;
+        this.protocolo = protocolo;
         this.output = new ObjectOutputStream(clientSocket.getOutputStream());
         this.input = new ObjectInputStream(clientSocket.getInputStream());
         this.activo = true;
@@ -49,11 +50,10 @@ public class ManejadorCliente implements Runnable, IComunicacionCliente{
     }
 
     private void recibirMensaje(MensajeDTO mensaje) {
-        System.out.println("Mensaje recibido: " + mensaje);
-        // Aquí podrías delegar la acción a un protocolo o fachada del núcleo.
+        protocolo.ejecutarAccion(this, mensaje);
     }
 
-     @Override
+    @Override
     public void mandarMensaje(RespuestaDTO respuesta) {
         try {
             output.writeObject(respuesta);
@@ -66,22 +66,25 @@ public class ManejadorCliente implements Runnable, IComunicacionCliente{
     private void cerrarConexion() {
         try {
             activo = false;
-            if (input != null) input.close();
-            if (output != null) output.close();
-            if (clientSocket != null && !clientSocket.isClosed()) clientSocket.close();
-            MensajeDTO mensaje= new MensajeDTO("REMOVER_CLIENTE");
+            if (input != null) {
+                input.close();
+            }
+            if (output != null) {
+                output.close();
+            }
+            if (clientSocket != null && !clientSocket.isClosed()) {
+                clientSocket.close();
+            }
+            MensajeDTO mensaje = new MensajeDTO("REMOVER_CLIENTE");
             protocolo.ejecutarAccion(this, mensaje);
         } catch (IOException e) {
             System.err.println("Error al cerrar la conexión del cliente: " + e.getMessage());
         }
     }
 
-     @Override
+    @Override
     public Socket getClientSocket() {
         return clientSocket;
     }
-  
-    
-    
-} 
 
+}

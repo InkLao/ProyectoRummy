@@ -16,29 +16,41 @@ import javax.swing.JOptionPane;
  * @author user
  */
 public class ControladorRegistro {
-
+    
     private ModeloRegistro modeloRegistro;
-
+    
     public ControladorRegistro(ModeloRegistro modeloRegistro) {
         this.modeloRegistro = modeloRegistro;
-
+        
     }
-
+    
     public void seleccionarAvatar(String avatar) {
-        modeloRegistro.setEstado(true);
+        modeloRegistro.setVisible(true);
         modeloRegistro.setRutaAvatar(avatar);
         modeloRegistro.setRutaAvatarAgrandado();
         modeloRegistro.notificar();
     }
-
+    
     public void seleccionarColorFicha(int index, Color color) {
         modeloRegistro.cambiarColor(index, color);
         modeloRegistro.notificar();
     }
-
+    
+    public void seleccionarNombre(String nombre) {
+        modeloRegistro.setNombre(nombre);
+    }
+    
     public void mostrarPantalla() {
-        modeloRegistro.setEstado(true);
+        modeloRegistro.setVisible(true);
         modeloRegistro.notificar();
     }
-
+    
+    public void registrarJugador() {
+        modeloRegistro.setEstado(true);
+        modeloRegistro.validarDatos();
+        if (modeloRegistro.isEstado()) {
+            modeloRegistro.registrarJugador();
+        }
+    }
+    
 }
