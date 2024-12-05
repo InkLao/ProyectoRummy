@@ -19,6 +19,8 @@ public class FachadaGraficaCore implements InterfazGraficaPlugin {
 
     private final Map<Socket, Jugador> jugadorSocketMap;
     private Jugador jugadorActual;
+    private Partida partida;
+   
 
     public FachadaGraficaCore() {
         this.jugadorSocketMap = new HashMap<>();
@@ -53,6 +55,11 @@ public class FachadaGraficaCore implements InterfazGraficaPlugin {
 
     public void setJugadorActual(Jugador jugadorActual) {
         this.jugadorActual = jugadorActual;
+    }
+
+    @Override
+    public void encontrarPartida() {
+       this.partida.getEstado();
     }
 
 }

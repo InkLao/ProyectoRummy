@@ -6,6 +6,7 @@ package registrarJugadorMVC;
 
 import comunicacion.FachadaCore;
 import dtos.ModeloRegistroDTO;
+import dtos.RespuestaDTO;
 import java.awt.Color;
 import java.util.List;
 import java.util.ArrayList;
@@ -142,13 +143,17 @@ public class ModeloRegistro implements IModeloRegistro, ObservadorModeloRegistro
     }
 
     @Override
-    public void actualizarModeloRegistro(ModeloRegistroDTO modeloRegistroDTO) {
+    public void actualizarModeloRegistro(RespuestaDTO respuesta) {
+        if (!respuesta.isExito()) {
+            this.notificarError(respuesta.getMensaje());
+        }
+        ModeloRegistroDTO modeloRegistroDTO = (ModeloRegistroDTO) respuesta.getDatos();
         this.colores = modeloRegistroDTO.getColores();
         this.nombre = modeloRegistroDTO.getNombre();
         this.rutaAvatar = modeloRegistroDTO.getAvatar();
         this.setRutaAvatarAgrandado();
         this.notificar();
-        this.notificarMensaje("Se ha registrado correctamente");
+        this.notificarMensaje(respuesta.getMensaje());
     }
 
     public void registrarJugador() {
@@ -160,7 +165,7 @@ public class ModeloRegistro implements IModeloRegistro, ObservadorModeloRegistro
             observadorRegistro.mostrarError(mensaje);
         }
     }
-    
+
     public void notificarMensaje(String mensaje) {
         if (observadorRegistro != null) {
             observadorRegistro.mostrarMensaje(mensaje);

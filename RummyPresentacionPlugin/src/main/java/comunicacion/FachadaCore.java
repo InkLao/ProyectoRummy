@@ -13,18 +13,24 @@ import java.util.List;
  *
  * @author carli
  */
-public class FachadaCore implements InterfazGraficaPlugin{
-    ClienteSocket socket;
+public class FachadaCore implements InterfazGraficaPlugin {
 
+    ClienteSocket socket;
+    
     public FachadaCore(ClienteSocket socket) {
         this.socket = socket;
     }
     
-    
     @Override
     public void crearJugador(String nombre, String avatar, List<Color> colores) {
-        MensajeDTO mensajeDTO= new MensajeDTO("REGISTRAR_JUGADOR", new ModeloRegistroDTO(avatar, colores, nombre));
-       socket.mandarMensaje(mensajeDTO);
+        MensajeDTO mensajeDTO = new MensajeDTO("REGISTRAR_JUGADOR", new ModeloRegistroDTO(avatar, colores, nombre));
+        socket.mandarMensaje(mensajeDTO);
+    }
+    
+    @Override
+    public void encontrarPartida() {
+        MensajeDTO mensajeDTO = new MensajeDTO("ENCONTRAR_PARTIDA");
+        socket.mandarMensaje(mensajeDTO);
     }
     
 }

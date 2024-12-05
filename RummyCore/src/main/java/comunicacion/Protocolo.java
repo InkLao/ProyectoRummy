@@ -55,6 +55,9 @@ public class Protocolo {
                 case "JUGAR_TURNO":
                     ejecutarTurno(manejadorCliente.getClientSocket(), mensaje);
                     break;
+                case "ENCONTRAR_PARTIDA":
+                    buscarPartida(manejadorCliente.getClientSocket(), mensaje);
+                    break;
                 default:
                     enviarError(manejadorCliente.getClientSocket(), "Acción no reconocida: " + accion);
             }
@@ -102,6 +105,10 @@ public class Protocolo {
         fachadaGraficaCore.removerJugador(socketActual);
         comunicacionPlugin.removerCliente(manejadorCliente);
         System.out.println("cliente mandado a remover");
+    }
+
+    private void buscarPartida(Socket cliente, MensajeDTO mensaje) {
+        fachadaGraficaCore.encontrarPartida();
     }
 
     // Método para manejar errores y enviar respuesta al cliente

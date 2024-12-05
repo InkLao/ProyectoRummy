@@ -2,18 +2,16 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Interface.java to edit this template
  */
-package comunicacion;
+package configurarPartidaMVC;
 
-import java.awt.Color;
-import java.util.List;
+import dtos.RespuestaDTO;
 
 /**
  *
  * @author carli
  */
-public interface InterfazGraficaPlugin {
+public interface ObservadorModeloConfiguracion {
 
-    public void crearJugador(String nombre, String avatar, List<Color> colores);
-    public void encontrarPartida();
+    public void actualizarModeloConfiguracion(RespuestaDTO respuesta);
 
 }

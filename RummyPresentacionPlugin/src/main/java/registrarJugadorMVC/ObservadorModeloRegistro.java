@@ -5,6 +5,7 @@
 package registrarJugadorMVC;
 
 import dtos.ModeloRegistroDTO;
+import dtos.RespuestaDTO;
 
 /**
  *
@@ -12,5 +13,5 @@ import dtos.ModeloRegistroDTO;
  */
 public interface ObservadorModeloRegistro {
 
-    public void actualizarModeloRegistro(ModeloRegistroDTO modeloRegistroDTO);
+    public void actualizarModeloRegistro(RespuestaDTO respuesta);
 }

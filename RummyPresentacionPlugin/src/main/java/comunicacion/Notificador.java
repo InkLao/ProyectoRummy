@@ -29,7 +29,7 @@ public class Notificador {
 
     public void notificarATodos() {
         if (respuestaDTO.getDatos() instanceof ModeloRegistroDTO) {
-            modeloRegistro.actualizarModeloRegistro((ModeloRegistroDTO) respuestaDTO.getDatos());
+            modeloRegistro.actualizarModeloRegistro(respuestaDTO);
 
         }
     }

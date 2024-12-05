@@ -10,6 +10,8 @@ import java.net.InetAddress;
 import java.net.UnknownHostException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import menuPrincipalMVC.ControlMenuPrincipal;
+import menuPrincipalMVC.ModeloMenuPrincipal;
 import registrarJugadorMVC.ControladorRegistro;
 import registrarJugadorMVC.ModeloRegistro;
 import registrarJugadorMVC.VistaRegistro;
@@ -25,9 +27,10 @@ public class Rummy {
         ClienteSocket clienteSocket = new ClienteSocket("127.0.0.1", 5000);
         FachadaCore core = new FachadaCore(clienteSocket);
         ModeloRegistro modeloRegistro = new ModeloRegistro(core);
+        ModeloMenuPrincipal modeloMenuPrincipa= new ModeloMenuPrincipal(core);
         Notificador notificador = new Notificador(modeloRegistro);
-
-        ControladorRegistro controladorRegistro = new ControladorRegistro(modeloRegistro);
+        ControlMenuPrincipal menuPrincipal= new ControlMenuPrincipal(modeloMenuPrincipa);
+        ControladorRegistro controladorRegistro = new ControladorRegistro(modeloRegistro, menuPrincipal);
         VistaRegistro vistaRegistro = new VistaRegistro(controladorRegistro);
 
         modeloRegistro.setObservadorRegistro(vistaRegistro);

@@ -10,6 +10,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
+import menuPrincipalMVC.ControlMenuPrincipal;
 
 /**
  *
@@ -18,9 +19,11 @@ import javax.swing.JOptionPane;
 public class ControladorRegistro {
     
     private ModeloRegistro modeloRegistro;
+    private ControlMenuPrincipal controlMenuPrincipal;
     
-    public ControladorRegistro(ModeloRegistro modeloRegistro) {
+    public ControladorRegistro(ModeloRegistro modeloRegistro,ControlMenuPrincipal controlMenuPrincipal) {
         this.modeloRegistro = modeloRegistro;
+        this.controlMenuPrincipal= controlMenuPrincipal;
         
     }
     
@@ -51,6 +54,12 @@ public class ControladorRegistro {
         if (modeloRegistro.isEstado()) {
             modeloRegistro.registrarJugador();
         }
+    }
+    
+    public void mostrarMenu(){
+        modeloRegistro.setVisible(false);
+        modeloRegistro.notificar();
+        controlMenuPrincipal.mostrarPantalla();
     }
     
 }

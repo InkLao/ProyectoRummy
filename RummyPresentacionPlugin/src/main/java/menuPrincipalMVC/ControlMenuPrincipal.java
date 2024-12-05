@@ -9,5 +9,18 @@ package menuPrincipalMVC;
  * @author carli
  */
 public class ControlMenuPrincipal {
+    ModeloMenuPrincipal modeloMenuPrincipal;
+    
+    
+
+    public ControlMenuPrincipal(ModeloMenuPrincipal modeloMenuPrincipal) {
+        this.modeloMenuPrincipal = modeloMenuPrincipal;
+    }
+    
+    
+    public void mostrarPantalla() {
+        modeloMenuPrincipal.setVisible(true);
+        modeloMenuPrincipal.notificar();
+    }
     
 }
