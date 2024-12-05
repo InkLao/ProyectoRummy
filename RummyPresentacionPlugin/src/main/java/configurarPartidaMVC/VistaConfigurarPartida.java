@@ -14,7 +14,6 @@ import javax.swing.ImageIcon;
  */
 public class VistaConfigurarPartida extends javax.swing.JFrame {
 
-    private Image fondo;
 
     
     
@@ -23,43 +22,14 @@ public class VistaConfigurarPartida extends javax.swing.JFrame {
      */
     public VistaConfigurarPartida() {
         initComponents();
-        setLocationRelativeTo(null); 
-        setFondo();
-        repaint();
+       
     }
 
   
     
-//    public void paintFondo(Graphics g) {
-//        super.paint(g);  // Llamamos al método de la clase base JFrame para pintar la ventana
-//
-//        // Aquí cargamos y pintamos el fondo
-//        if (fondo == null) {
-//            // Cargar la imagen desde la ruta relativa en el directorio resources
-//            ImageIcon imagenFondo = new ImageIcon(getClass().getResource("/images/fondo.jpg"));
-//            fondo = imagenFondo.getImage();
-//        }
-//
-//        // Dibujamos la imagen sobre el panel
-//        if (fondo != null) {
-//            g.drawImage(fondo, 0, 0, getWidth(), getHeight(), this); // Redimensionamos la imagen para que ocupe toda la ventana
-//        }
-//    }
+
     
-    private void setFondo() {
-        jPanel1.setOpaque(false); 
-        jPanel1.addHierarchyListener(e -> jPanel1.repaint());
-        jPanel1.repaint();
-    }
-    
-//    @Override
-//    public void paint(Graphics g) {
-//        super.paint(g);
-//        // Llamamos a paintFondo desde el paint principal de la ventana.
-//        paintFondo(g);
-//    }
-//    
-    
+      
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
