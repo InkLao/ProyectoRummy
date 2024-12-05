@@ -17,7 +17,8 @@ public class Protocolo {
 
     private FachadaGraficaCore fachadaGraficaCore; // Interacción con el núcleo del sistema
     private IComunicacionPlugin comunicacionPlugin;
-
+    private Socket socketActual;
+    
     public Protocolo(FachadaGraficaCore fachadaGraficaCore, IComunicacionPlugin comunicacionPlugin) {
         this.fachadaGraficaCore = fachadaGraficaCore;
         this.comunicacionPlugin = comunicacionPlugin;
@@ -63,6 +64,7 @@ public class Protocolo {
     // Métodos para manejar acciones específicas
 
     private void registrarJugador(Socket cliente, MensajeDTO mensaje) {
+        this.socketActual=cliente;
 //        JugadorDTO jugadorDTO = (JugadorDTO) mensaje.getContenido();
 //        boolean resultado = fachadaCore.registrarJugador(jugadorDTO);
 //        cliente.enviarMensaje(new RespuestaDTO("REGISTRAR_JUGADOR", resultado));

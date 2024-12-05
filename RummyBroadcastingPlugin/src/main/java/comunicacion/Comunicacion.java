@@ -22,34 +22,47 @@ public class Comunicacion implements IComunicacionPlugin {
     }
 
     @Override
-    public void transmitirMensaje(RespuestaDTO respuesta) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public synchronized void transmitirMensaje(RespuestaDTO respuesta) {
+        // Envía un mensaje a todos los clientes registrados.
+        for (IComunicacionCliente cliente : comunicacionClientes) {
+            cliente.mandarMensaje(respuesta);
+        }
     }
 
     @Override
-    public void transmitirALosDemas(Socket cliente, RespuestaDTO respuesta) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public synchronized void transmitirALosDemas(Socket cliente, RespuestaDTO respuesta) {
+        // Envía un mensaje a todos los clientes excepto al especificado.
+        for (IComunicacionCliente comunicacionCliente : comunicacionClientes) {
+            if (!comunicacionCliente.getClientSocket().equals(cliente)) {
+                comunicacionCliente.mandarMensaje(respuesta);
+            }
+        }
     }
 
     @Override
-    public void suscribirCliente(IComunicacionCliente cliente) {
+    public synchronized void suscribirCliente(IComunicacionCliente cliente) {
         comunicacionClientes.add(cliente);
         cliente.mandarMensaje(new RespuestaDTO("SUSCRIBIR_CLIENTE", true, "Cliente Suscrito"));
         System.out.println(comunicacionClientes);
     }
 
     @Override
-    public void removerCliente(IComunicacionCliente cliente) {
+    public synchronized void removerCliente(IComunicacionCliente cliente) {
         comunicacionClientes.remove(cliente);
         cliente.mandarMensaje(new RespuestaDTO("REMOVER_CLIENTE", true, "Cliente Removido"));
-                System.out.println(comunicacionClientes);
+        System.out.println(comunicacionClientes);
 
     }
 
     @Override
-    public void transmitirACliente(Socket cliente, RespuestaDTO respuesta) {
-
+    public synchronized void transmitirACliente(Socket cliente, RespuestaDTO respuesta) {
+        // Envía un mensaje a un cliente específico basado en su socket.
+        for (IComunicacionCliente comunicacionCliente : comunicacionClientes) {
+            if (comunicacionCliente.getClientSocket().equals(cliente)) {
+                comunicacionCliente.mandarMensaje(respuesta);
+                break;
+            }
+        }
     }
 
-  
 }
