@@ -17,12 +17,13 @@ import java.util.Map;
  */
 public class FachadaGraficaCore implements InterfazGraficaPlugin {
 
-    private final Map<Socket, Jugador> jugadorSocketMap;
+    private final Map<Socket, Jugador> jugadoresRegistrados;
+    private List<Jugador>  jugadoresEnPartida  ;
     private Jugador jugadorActual;
     private Partida partida;
 
     public FachadaGraficaCore() {
-        this.jugadorSocketMap = new HashMap<>();
+        this.jugadoresRegistrados = new HashMap<>();
     }
 
     @Override
@@ -34,16 +35,16 @@ public class FachadaGraficaCore implements InterfazGraficaPlugin {
     }
 
     public synchronized void registrarJugador(Socket socket, Jugador jugador) {
-        jugadorSocketMap.put(socket, jugador);
+        jugadoresRegistrados.put(socket, jugador);
         System.out.println("Jugador registrado: " + jugador.getNombre());
-        System.out.println(jugadorSocketMap);
+        System.out.println(jugadoresRegistrados);
     }
 
     public synchronized void removerJugador(Socket socket) {
-        if (jugadorSocketMap.remove(socket) != null) {
-            jugadorSocketMap.remove(socket);
+        if (jugadoresRegistrados.remove(socket) != null) {
+            jugadoresRegistrados.remove(socket);
             System.out.println("Jugador removido");
-            System.out.println(jugadorSocketMap);
+            System.out.println(jugadoresRegistrados);
         }
 
     }
@@ -65,10 +66,12 @@ public class FachadaGraficaCore implements InterfazGraficaPlugin {
     public void enviarConfiguracionPartida(int rango, int numeroComodines) {
         if (partida == null) {
             partida = new Partida("DISPONIBLE", numeroComodines, rango);
+            System.out.println(this.partida.toString());
         } else {
             partida.setEstado("DISPONIBLE");
             partida.setNumeroComodines(numeroComodines);
             partida.setRangoFichas(rango);
+            System.out.println(this.partida.toString());
 
         }
 

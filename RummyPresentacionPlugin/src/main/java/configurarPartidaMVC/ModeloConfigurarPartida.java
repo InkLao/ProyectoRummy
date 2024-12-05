@@ -105,8 +105,6 @@ public class ModeloConfigurarPartida implements IModeloConfigurarPartida, Observ
             if (rangoFichas != 10 && rangoFichas != 13) {  // Asumimos que el rango de fichas es entre 1 y 100.
                 throw new IllegalArgumentException("El rango de fichas no es valido.");
             }
-
-            System.out.println("Los datos son válidos.");
         } catch (IllegalArgumentException e) {
             setEstado(false);
             notificarError(e.getMessage());

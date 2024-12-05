@@ -17,6 +17,7 @@ public class VistaConfigurarPartida extends javax.swing.JFrame implements Observ
 
     public VistaConfigurarPartida(ControladorConfigurarPartida configurarPartida) {
         initComponents();
+        this.setLocationRelativeTo(null);
         this.configurarPartida = configurarPartida;
     }
 

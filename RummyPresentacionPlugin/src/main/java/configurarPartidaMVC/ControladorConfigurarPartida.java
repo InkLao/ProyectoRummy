@@ -41,6 +41,8 @@ public class ControladorConfigurarPartida {
         modeloConfigurarPartida.validarDatos();
         if (modeloConfigurarPartida.isEstado()) {
             modeloConfigurarPartida.enviarConfiguracionPartida();
+            this.mostrarMenu();
+
         }
     }
 
