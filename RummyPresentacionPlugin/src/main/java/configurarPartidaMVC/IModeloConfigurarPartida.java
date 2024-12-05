@@ -4,10 +4,14 @@
  */
 package configurarPartidaMVC;
 
+import java.util.List;
+
 /**
  *
  * @author carli
  */
 public interface IModeloConfigurarPartida {
-    
+        public List<String> getRangosDisponibles();
+         public boolean isVisible();
+
 }

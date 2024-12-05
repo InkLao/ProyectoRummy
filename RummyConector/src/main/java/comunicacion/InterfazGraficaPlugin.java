@@ -15,5 +15,7 @@ public interface InterfazGraficaPlugin {
 
     public void crearJugador(String nombre, String avatar, List<Color> colores);
     public void encontrarPartida();
+    public void enviarConfiguracionPartida(int rango, int numeroComodines);
+
 
 }

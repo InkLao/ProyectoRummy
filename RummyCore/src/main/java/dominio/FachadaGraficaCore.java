@@ -20,7 +20,6 @@ public class FachadaGraficaCore implements InterfazGraficaPlugin {
     private final Map<Socket, Jugador> jugadorSocketMap;
     private Jugador jugadorActual;
     private Partida partida;
-   
 
     public FachadaGraficaCore() {
         this.jugadorSocketMap = new HashMap<>();
@@ -59,7 +58,20 @@ public class FachadaGraficaCore implements InterfazGraficaPlugin {
 
     @Override
     public void encontrarPartida() {
-       this.partida.getEstado();
+        this.partida.getEstado();
+    }
+
+    @Override
+    public void enviarConfiguracionPartida(int rango, int numeroComodines) {
+        if (partida == null) {
+            partida = new Partida("DISPONIBLE", numeroComodines, rango);
+        } else {
+            partida.setEstado("DISPONIBLE");
+            partida.setNumeroComodines(numeroComodines);
+            partida.setRangoFichas(rango);
+
+        }
+
     }
 
 }

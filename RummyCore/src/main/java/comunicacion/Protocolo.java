@@ -7,6 +7,7 @@ package comunicacion;
 import dominio.FachadaGraficaCore;
 import dtos.JugadorDTO;
 import dtos.MensajeDTO;
+import dtos.ModeloConfiguracionDTO;
 import dtos.ModeloRegistroDTO;
 import dtos.RespuestaDTO;
 import java.net.Socket;
@@ -19,7 +20,6 @@ public class Protocolo {
 
     private FachadaGraficaCore fachadaGraficaCore; // Interacción con el núcleo del sistema
     private IComunicacionPlugin comunicacionPlugin;
-    private Socket socketActual;
 
     public Protocolo(FachadaGraficaCore fachadaGraficaCore, IComunicacionPlugin comunicacionPlugin) {
         this.fachadaGraficaCore = fachadaGraficaCore;
@@ -69,7 +69,6 @@ public class Protocolo {
     // Métodos para manejar acciones específicas
 
     private void registrarJugador(Socket cliente, MensajeDTO mensaje) {
-        this.socketActual = cliente;
         ModeloRegistroDTO jugadorDTO = (ModeloRegistroDTO) mensaje.getDto();
         fachadaGraficaCore.crearJugador(jugadorDTO.getNombre(), jugadorDTO.getAvatar(), jugadorDTO.getColores());
         fachadaGraficaCore.registrarJugador(cliente, fachadaGraficaCore.getJugadorActual());
@@ -80,9 +79,10 @@ public class Protocolo {
     }
 
     private void configurarPartida(Socket cliente, MensajeDTO mensaje) {
-//        ConfiguracionPartidaDTO configuracionDTO = (ConfiguracionPartidaDTO) mensaje.getContenido();
-//        boolean resultado = fachadaCore.configurarPartida(configuracionDTO);
-//        cliente.enviarMensaje(new RespuestaDTO("CONFIGURAR_PARTIDA", resultado));
+        ModeloConfiguracionDTO configuracionDTO = (ModeloConfiguracionDTO) mensaje.getDto();
+        fachadaGraficaCore.enviarConfiguracionPartida(configuracionDTO.getRangoFichas(), configuracionDTO.getNumeroComodines());
+        System.out.println("Partida mandada a configurarse");
+        comunicacionPlugin.transmitirACliente(cliente, new RespuestaDTO(mensaje.getAccion(), true, "Exito al configurar la partida", configuracionDTO));
     }
 
     private void iniciarPartida(Socket cliente, MensajeDTO mensaje) {
@@ -102,7 +102,7 @@ public class Protocolo {
     }
 
     private void removerCliente(ManejadorCliente manejadorCliente) {
-        fachadaGraficaCore.removerJugador(socketActual);
+        fachadaGraficaCore.removerJugador(manejadorCliente.getClientSocket());
         comunicacionPlugin.removerCliente(manejadorCliente);
         System.out.println("cliente mandado a remover");
     }

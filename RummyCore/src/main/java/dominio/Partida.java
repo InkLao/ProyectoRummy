@@ -25,6 +25,12 @@ public class Partida {
         tablero = new Tablero();
     }
 
+    public Partida(String estado, int numeroComodines, int rangoFichas) {
+        this.estado = estado;
+        this.numeroComodines = numeroComodines;
+        this.rangoFichas = rangoFichas;
+    }
+
     public Partida(ControlTurnos controlTurnos, String estado, PozoFichas pozo, Tablero tablero, int numeroComodines, int rangoFichas) {
         this.controlTurnos = controlTurnos;
         this.estado = estado;
