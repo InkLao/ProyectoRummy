@@ -5,6 +5,7 @@
 package comunicacion;
 
 import dtos.RespuestaDTO;
+import java.net.Socket;
 
 /**
  *
@@ -12,4 +13,6 @@ import dtos.RespuestaDTO;
  */
 public interface IComunicacionCliente {
   public void mandarMensaje(RespuestaDTO respuesta);
+      public Socket getClientSocket() ;
+
 }
