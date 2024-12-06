@@ -130,14 +130,6 @@ public class VistaConfigurarPartida extends javax.swing.JFrame implements Observ
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCrearPartidaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCrearPartidaActionPerformed
-        int numeroComodines = (int) JsNumeroComodines.getValue();
-        if (numeroComodines < 2 || numeroComodines > 8) {
-            JOptionPane.showMessageDialog(this, "El número de comodines debe estar entre 2 y 8.", "Error", JOptionPane.ERROR_MESSAGE);
-        } else {
-            configurarPartida.seleccionarNumeroComodines(numeroComodines);
-            configurarPartida.seleccionarRango(obtenerValorRango((String) cbRangoFichas.getSelectedItem()));
-            configurarPartida.asignarConfiguracionPartida();
-        }
         configurarPartida.seleccionarNumeroComodines((int) JsNumeroComodines.getValue());
         configurarPartida.seleccionarRango(obtenerValorRango((String) cbRangoFichas.getSelectedItem()));
         configurarPartida.asignarConfiguracionPartida();
