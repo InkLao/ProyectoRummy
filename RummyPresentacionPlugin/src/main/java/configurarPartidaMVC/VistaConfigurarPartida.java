@@ -48,6 +48,8 @@ public class VistaConfigurarPartida extends javax.swing.JFrame implements Observ
         btnAtras.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/left.png"))); // NOI18N
         btnAtras.setBorderPainted(false);
         btnAtras.setContentAreaFilled(false);
+        btnAtras.setFocusPainted(false);
+        btnAtras.setFocusable(false);
         btnAtras.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAtrasActionPerformed(evt);
@@ -77,8 +79,11 @@ public class VistaConfigurarPartida extends javax.swing.JFrame implements Observ
 
         btnCrearPartida.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         btnCrearPartida.setText("Crear Partida");
+        btnCrearPartida.setBorderPainted(false);
         btnCrearPartida.setContentAreaFilled(false);
         btnCrearPartida.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnCrearPartida.setFocusPainted(false);
+        btnCrearPartida.setFocusable(false);
         btnCrearPartida.setPreferredSize(new java.awt.Dimension(421, 88));
         btnCrearPartida.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

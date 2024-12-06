@@ -20,7 +20,7 @@ import javax.swing.JPanel;
  * @author carli
  */
 public class VistaMenuPrincipal extends javax.swing.JFrame implements ObservadorMenu {
-
+    
     ControlMenuPrincipal controlMenuPrincipal;
 
     /**
@@ -45,15 +45,15 @@ public class VistaMenuPrincipal extends javax.swing.JFrame implements Observador
         jPanel5 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         btnUnirsePartida = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
+        btn1 = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         btnConfiguracion = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        btn2 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
         btnSalir = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        btn3 = new javax.swing.JButton();
         jPanel6 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jPanel7 = new javax.swing.JPanel();
@@ -80,16 +80,20 @@ public class VistaMenuPrincipal extends javax.swing.JFrame implements Observador
         btnUnirsePartida.setBorderPainted(false);
         btnUnirsePartida.setContentAreaFilled(false);
         btnUnirsePartida.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnUnirsePartida.setFocusPainted(false);
+        btnUnirsePartida.setFocusable(false);
         btnUnirsePartida.setPreferredSize(new java.awt.Dimension(373, 44));
 
-        jButton1.setFont(new java.awt.Font("Stencil", 1, 120)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(255, 255, 255));
-        jButton1.setText("1");
-        jButton1.setBorderPainted(false);
-        jButton1.setContentAreaFilled(false);
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btn1.setFont(new java.awt.Font("Stencil", 1, 120)); // NOI18N
+        btn1.setForeground(new java.awt.Color(255, 255, 255));
+        btn1.setText("1");
+        btn1.setBorderPainted(false);
+        btn1.setContentAreaFilled(false);
+        btn1.setFocusPainted(false);
+        btn1.setFocusable(false);
+        btn1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btn1ActionPerformed(evt);
             }
         });
 
@@ -100,7 +104,7 @@ public class VistaMenuPrincipal extends javax.swing.JFrame implements Observador
             .addComponent(btnUnirsePartida, javax.swing.GroupLayout.DEFAULT_SIZE, 450, Short.MAX_VALUE)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btn1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
@@ -109,7 +113,7 @@ public class VistaMenuPrincipal extends javax.swing.JFrame implements Observador
                 .addContainerGap()
                 .addComponent(btnUnirsePartida, javax.swing.GroupLayout.PREFERRED_SIZE, 253, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 329, Short.MAX_VALUE)
+                .addComponent(btn1, javax.swing.GroupLayout.DEFAULT_SIZE, 329, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -128,20 +132,24 @@ public class VistaMenuPrincipal extends javax.swing.JFrame implements Observador
         btnConfiguracion.setBorderPainted(false);
         btnConfiguracion.setContentAreaFilled(false);
         btnConfiguracion.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnConfiguracion.setFocusPainted(false);
+        btnConfiguracion.setFocusable(false);
         btnConfiguracion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnConfiguracionActionPerformed(evt);
             }
         });
 
-        jButton2.setFont(new java.awt.Font("Stencil", 1, 120)); // NOI18N
-        jButton2.setForeground(new java.awt.Color(255, 255, 255));
-        jButton2.setText("2");
-        jButton2.setBorderPainted(false);
-        jButton2.setContentAreaFilled(false);
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        btn2.setFont(new java.awt.Font("Stencil", 1, 120)); // NOI18N
+        btn2.setForeground(new java.awt.Color(255, 255, 255));
+        btn2.setText("2");
+        btn2.setBorderPainted(false);
+        btn2.setContentAreaFilled(false);
+        btn2.setFocusPainted(false);
+        btn2.setFocusable(false);
+        btn2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                btn2ActionPerformed(evt);
             }
         });
 
@@ -153,7 +161,7 @@ public class VistaMenuPrincipal extends javax.swing.JFrame implements Observador
                 .addContainerGap()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnConfiguracion, javax.swing.GroupLayout.DEFAULT_SIZE, 438, Short.MAX_VALUE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(btn2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel3Layout.setVerticalGroup(
@@ -162,7 +170,7 @@ public class VistaMenuPrincipal extends javax.swing.JFrame implements Observador
                 .addContainerGap()
                 .addComponent(btnConfiguracion, javax.swing.GroupLayout.PREFERRED_SIZE, 252, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, 330, Short.MAX_VALUE)
+                .addComponent(btn2, javax.swing.GroupLayout.DEFAULT_SIZE, 330, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -181,20 +189,24 @@ public class VistaMenuPrincipal extends javax.swing.JFrame implements Observador
         btnSalir.setBorderPainted(false);
         btnSalir.setContentAreaFilled(false);
         btnSalir.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnSalir.setFocusPainted(false);
+        btnSalir.setFocusable(false);
         btnSalir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnSalirActionPerformed(evt);
             }
         });
 
-        jButton3.setFont(new java.awt.Font("Stencil", 1, 120)); // NOI18N
-        jButton3.setForeground(new java.awt.Color(255, 255, 255));
-        jButton3.setText("3");
-        jButton3.setBorderPainted(false);
-        jButton3.setContentAreaFilled(false);
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        btn3.setFont(new java.awt.Font("Stencil", 1, 120)); // NOI18N
+        btn3.setForeground(new java.awt.Color(255, 255, 255));
+        btn3.setText("3");
+        btn3.setBorderPainted(false);
+        btn3.setContentAreaFilled(false);
+        btn3.setFocusPainted(false);
+        btn3.setFocusable(false);
+        btn3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                btn3ActionPerformed(evt);
             }
         });
 
@@ -202,7 +214,7 @@ public class VistaMenuPrincipal extends javax.swing.JFrame implements Observador
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, 450, Short.MAX_VALUE)
+            .addComponent(btn3, javax.swing.GroupLayout.DEFAULT_SIZE, 450, Short.MAX_VALUE)
             .addComponent(btnSalir, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jPanel4Layout.setVerticalGroup(
@@ -211,7 +223,7 @@ public class VistaMenuPrincipal extends javax.swing.JFrame implements Observador
                 .addContainerGap()
                 .addComponent(btnSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 239, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, 329, Short.MAX_VALUE)
+                .addComponent(btn3, javax.swing.GroupLayout.DEFAULT_SIZE, 329, Short.MAX_VALUE)
                 .addGap(14, 14, 14))
         );
 
@@ -286,26 +298,26 @@ public class VistaMenuPrincipal extends javax.swing.JFrame implements Observador
         controlMenuPrincipal.mostraConfiguracionPartida();
     }//GEN-LAST:event_btnConfiguracionActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+    private void btn1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn1ActionPerformed
+        
+    }//GEN-LAST:event_btn1ActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
+    private void btn2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn2ActionPerformed
+        this.btnConfiguracionActionPerformed(evt);
+    }//GEN-LAST:event_btn2ActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton3ActionPerformed
+    private void btn3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn3ActionPerformed
+        this.btnSalirActionPerformed(evt);        // TODO add your handling code here:
+    }//GEN-LAST:event_btn3ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btn1;
+    private javax.swing.JButton btn2;
+    private javax.swing.JButton btn3;
     private javax.swing.JButton btnConfiguracion;
     private javax.swing.JButton btnSalir;
     private javax.swing.JButton btnUnirsePartida;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -322,13 +334,13 @@ public class VistaMenuPrincipal extends javax.swing.JFrame implements Observador
     public void mostrarMensaje(String mensaje) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
-
+    
     @Override
     public void actualizar(IModeloMenu modeloMenu) {
         this.setVisible(modeloMenu.getVisible());
-
+        
     }
-
+    
     @Override
     public void mostrarError(String mensaje) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
