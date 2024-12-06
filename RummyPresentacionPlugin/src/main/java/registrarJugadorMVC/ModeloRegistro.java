@@ -77,10 +77,13 @@ public class ModeloRegistro implements IModeloRegistro, ObservadorModeloRegistro
         rutaAvatarSeleccionado = extractRelativePath(rutaAvatarSeleccionado);
         System.out.println(rutaAvatarSeleccionado);
         this.rutaAvatarAgrandado = rutaAvatarSeleccionado;
+        this.notificar();
     }
 
     public void cambiarColor(int index, Color color) {
         colores.set(index, color);
+        this.notificar();
+
     }
 
     public String getNombre() {
@@ -136,6 +139,8 @@ public class ModeloRegistro implements IModeloRegistro, ObservadorModeloRegistro
 
     public void setVisible(boolean visble) {
         this.visible = visble;
+        this.notificar();
+
     }
 
     public void notificar() {

@@ -88,7 +88,7 @@ public class ModeloConfigurarPartida implements IModeloConfigurarPartida, Observ
         }
     }
 
-    public void enviarConfiguracionPartida() {
+    public void asignarConfiguracionPartida() {
         core.enviarConfiguracionPartida(rangoFichas, numeroComodines);
     }
 

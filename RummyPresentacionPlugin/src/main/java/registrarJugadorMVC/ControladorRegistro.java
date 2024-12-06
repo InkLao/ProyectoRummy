@@ -31,12 +31,10 @@ public class ControladorRegistro {
         modeloRegistro.setVisible(true);
         modeloRegistro.setRutaAvatar(avatar);
         modeloRegistro.setRutaAvatarAgrandado();
-        modeloRegistro.notificar();
     }
     
     public void seleccionarColorFicha(int index, Color color) {
         modeloRegistro.cambiarColor(index, color);
-        modeloRegistro.notificar();
     }
     
     public void seleccionarNombre(String nombre) {
@@ -45,7 +43,6 @@ public class ControladorRegistro {
     
     public void mostrarPantalla() {
         modeloRegistro.setVisible(true);
-        modeloRegistro.notificar();
     }
     
     public void registrarJugador() {
@@ -59,7 +56,6 @@ public class ControladorRegistro {
     
     public void mostrarMenu(){
         modeloRegistro.setVisible(false);
-        modeloRegistro.notificar();
         controlMenuPrincipal.mostrarPantalla();
     }
     
