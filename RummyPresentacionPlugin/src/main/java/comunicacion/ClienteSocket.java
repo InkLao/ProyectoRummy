@@ -83,7 +83,6 @@ public class ClienteSocket implements Runnable {
     // Método para recibir un mensaje del servidor.
     public void recibirMensaje(RespuestaDTO respuesta) {
         notificador.setRespuestaDTO(respuesta);
-        notificador.notificarATodos();
     }
 
     // Método para cerrar la conexión con el servidor.

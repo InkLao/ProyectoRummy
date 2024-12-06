@@ -27,6 +27,7 @@ public class Notificador {
 
     public void setRespuestaDTO(RespuestaDTO respuestaDTO) {
         this.respuestaDTO = respuestaDTO;
+        this.notificarATodos();
     }
     
     

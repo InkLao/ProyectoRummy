@@ -40,7 +40,7 @@ public class ControladorConfigurarPartida {
         modeloConfigurarPartida.setEstado(true);
         modeloConfigurarPartida.validarDatos();
         if (modeloConfigurarPartida.isEstado()) {
-            modeloConfigurarPartida.enviarConfiguracionPartida();
+            modeloConfigurarPartida.asignarConfiguracionPartida();
             this.mostrarMenu();
 
         }
