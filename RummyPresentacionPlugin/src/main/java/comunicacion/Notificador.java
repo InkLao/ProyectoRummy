@@ -5,6 +5,7 @@
 package comunicacion;
 
 import configurarPartidaMVC.ObservadorModeloConfiguracion;
+import dtos.ModeloConfiguracionDTO;
 import dtos.ModeloRegistroDTO;
 import dtos.RespuestaDTO;
 import registrarJugadorMVC.ObservadorModeloRegistro;
@@ -35,7 +36,7 @@ public class Notificador {
             modeloRegistro.actualizarModeloRegistro(respuestaDTO);
 
         }
-         if (respuestaDTO.getDatos() instanceof ModeloRegistroDTO) {
+         if (respuestaDTO.getDatos() instanceof ModeloConfiguracionDTO) {
             modeloConfiguracion.actualizarModeloConfiguracion(respuestaDTO);
 
         }

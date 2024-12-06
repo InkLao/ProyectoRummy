@@ -58,7 +58,7 @@ public class VistaRegistro extends javax.swing.JFrame implements ObservadorRegis
 
     @Override
     public void actualizar(IModeloRegistro modeloRegistro) {
-        if (!modeloRegistro.getVisible()) {
+        if (!this.isVisible()) {
             DefaultComboBoxModel<ImageIcon> model = new DefaultComboBoxModel<>(modeloRegistro.getListaAvatars().toArray(new ImageIcon[0]));
             cbAvatars.setModel(model);
         }

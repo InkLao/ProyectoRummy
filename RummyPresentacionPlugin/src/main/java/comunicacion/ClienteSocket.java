@@ -66,7 +66,7 @@ public class ClienteSocket implements Runnable {
         } catch (IOException | ClassNotFoundException e) {
             System.err.println("Error en la comunicación con el servidor: " + e.getMessage());
         } catch (Exception ex) {
-            System.err.println("Error en la comunicación: " + ex.getMessage());
+            System.err.println("Error en la comunicacióna: " + ex.getMessage());
         }
     }
 
