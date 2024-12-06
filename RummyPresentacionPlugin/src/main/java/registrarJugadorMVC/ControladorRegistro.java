@@ -17,46 +17,52 @@ import menuPrincipalMVC.ControlMenuPrincipal;
  * @author user
  */
 public class ControladorRegistro {
-    
+
     private ModeloRegistro modeloRegistro;
     private ControlMenuPrincipal controlMenuPrincipal;
-    
-    public ControladorRegistro(ModeloRegistro modeloRegistro,ControlMenuPrincipal controlMenuPrincipal) {
+
+    public ControladorRegistro(ModeloRegistro modeloRegistro, ControlMenuPrincipal controlMenuPrincipal) {
         this.modeloRegistro = modeloRegistro;
-        this.controlMenuPrincipal= controlMenuPrincipal;
-        
+        this.controlMenuPrincipal = controlMenuPrincipal;
+
     }
-    
+
     public void seleccionarAvatar(String avatar) {
         modeloRegistro.setVisible(true);
         modeloRegistro.setRutaAvatar(avatar);
         modeloRegistro.setRutaAvatarAgrandado();
     }
-    
+
     public void seleccionarColorFicha(int index, Color color) {
         modeloRegistro.cambiarColor(index, color);
     }
-    
+
     public void seleccionarNombre(String nombre) {
         modeloRegistro.setNombre(nombre);
     }
-    
+
     public void mostrarPantalla() {
         modeloRegistro.setVisible(true);
     }
-    
+
     public void registrarJugador() {
         modeloRegistro.setEstado(true);
         modeloRegistro.validarDatos();
+
+        if (!modeloRegistro.isEstado()) {
+            return; // Exit early if validation fails
+        }
+
+        modeloRegistro.registrarJugador();
+
         if (modeloRegistro.isEstado()) {
-            modeloRegistro.registrarJugador();
             this.mostrarMenu();
         }
     }
-    
-    public void mostrarMenu(){
+
+    public void mostrarMenu() {
         modeloRegistro.setVisible(false);
         controlMenuPrincipal.mostrarPantalla();
     }
-    
+
 }

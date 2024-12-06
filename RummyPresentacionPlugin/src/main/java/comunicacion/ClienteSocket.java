@@ -75,8 +75,10 @@ public class ClienteSocket implements Runnable {
         try {
             out.writeObject(mensaje);  // Enviar el mensaje al servidor.
             out.flush();               // Asegurarse de que se haya enviado.
-        } catch (IOException e) {
+        } catch (IOException  | NullPointerException e) {
             System.err.println("Error al enviar mensaje al servidor: " + e.getMessage());
+            RespuestaDTO respuestaError = new RespuestaDTO("ENVIO_MENSAJE", false, "Error en la comunicación: no se pudo conectar con el servidor",mensaje.getDto());
+            notificador.setRespuestaDTO(respuestaError);
         }
     }
 

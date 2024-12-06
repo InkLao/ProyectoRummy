@@ -22,4 +22,6 @@ public interface IModeloRegistro {
 
     public List<Color> getColores();
 
+    public String getNombre();
+
 }

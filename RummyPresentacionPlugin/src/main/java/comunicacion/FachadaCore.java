@@ -8,6 +8,7 @@ import dtos.MensajeDTO;
 import dtos.ModeloConfiguracionDTO;
 import dtos.ModeloRegistroDTO;
 import java.awt.Color;
+import java.io.IOException;
 import java.util.List;
 
 /**
@@ -23,19 +24,19 @@ public class FachadaCore implements InterfazGraficaPlugin {
     }
 
     @Override
-    public void crearJugador(String nombre, String avatar, List<Color> colores) {
+    public void crearJugador(String nombre, String avatar, List<Color> colores) throws IllegalArgumentException, IOException {
         MensajeDTO mensajeDTO = new MensajeDTO("REGISTRAR_JUGADOR", new ModeloRegistroDTO(avatar, colores, nombre));
         socket.mandarMensaje(mensajeDTO);
     }
 
     @Override
-    public void encontrarPartida() {
+    public void encontrarPartida() throws IllegalArgumentException, IOException {
         MensajeDTO mensajeDTO = new MensajeDTO("ENCONTRAR_PARTIDA");
         socket.mandarMensaje(mensajeDTO);
     }
 
     @Override
-    public void enviarConfiguracionPartida(int rango, int numeroComodines) {
+    public void enviarConfiguracionPartida(int rango, int numeroComodines) throws IllegalArgumentException, IOException {
         MensajeDTO mensajeDTO = new MensajeDTO("CONFIGURAR_PARTIDA",new ModeloConfiguracionDTO(rango, numeroComodines));
         socket.mandarMensaje(mensajeDTO);
     }

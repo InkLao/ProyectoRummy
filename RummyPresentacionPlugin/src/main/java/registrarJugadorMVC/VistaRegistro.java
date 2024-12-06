@@ -22,6 +22,8 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
 import registrarJugadorMVC.IModeloRegistro;
 
 /**
@@ -36,10 +38,29 @@ public class VistaRegistro extends javax.swing.JFrame implements ObservadorRegis
         initComponents();
         this.setLocationRelativeTo(null);
         this.controladorRegistro = controladorRegistro;
+        this.lblNombre.setText("Nombre:");
+
         this.cbAvatars.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 actualizarAvatarSeleccionado();
+            }
+        });
+
+        txtNombre.getDocument().addDocumentListener(new DocumentListener() {
+            @Override
+            public void insertUpdate(DocumentEvent e) {
+                controladorRegistro.seleccionarNombre(txtNombre.getText());
+            }
+
+            @Override
+            public void removeUpdate(DocumentEvent e) {
+                controladorRegistro.seleccionarNombre(txtNombre.getText());
+            }
+
+            @Override
+            public void changedUpdate(DocumentEvent e) {
+                controladorRegistro.seleccionarNombre(txtNombre.getText());
             }
         });
     }
@@ -79,6 +100,7 @@ public class VistaRegistro extends javax.swing.JFrame implements ObservadorRegis
         color2.setBackground(modeloRegistro.getColores().get(1));
         color3.setBackground(modeloRegistro.getColores().get(2));
         color4.setBackground(modeloRegistro.getColores().get(3));
+        lblNombre.setText("Nombre: " + modeloRegistro.getNombre());
 
     }
 
@@ -96,7 +118,7 @@ public class VistaRegistro extends javax.swing.JFrame implements ObservadorRegis
         jPanel4 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
         lblAvatar = new javax.swing.JLabel();
-        jLabel11 = new javax.swing.JLabel();
+        lblNombre = new javax.swing.JLabel();
         jPanel5 = new javax.swing.JPanel();
         separador6 = new javax.swing.JLabel();
         separador5 = new javax.swing.JLabel();
@@ -163,10 +185,10 @@ public class VistaRegistro extends javax.swing.JFrame implements ObservadorRegis
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jLabel11.setBackground(new java.awt.Color(204, 204, 204));
-        jLabel11.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
-        jLabel11.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel11.setText("Nombre");
+        lblNombre.setBackground(new java.awt.Color(204, 204, 204));
+        lblNombre.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
+        lblNombre.setForeground(new java.awt.Color(255, 255, 255));
+        lblNombre.setText("Nombre:");
 
         jPanel5.setBackground(new java.awt.Color(44, 41, 41));
 
@@ -262,7 +284,7 @@ public class VistaRegistro extends javax.swing.JFrame implements ObservadorRegis
                         .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(177, 177, 177))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                        .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 487, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(lblNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 487, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(111, 111, 111))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
                         .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, 720, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -274,7 +296,7 @@ public class VistaRegistro extends javax.swing.JFrame implements ObservadorRegis
                 .addGap(128, 128, 128)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(26, 26, 26)
-                .addComponent(jLabel11)
+                .addComponent(lblNombre)
                 .addGap(29, 29, 29)
                 .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(103, 103, 103)
@@ -574,7 +596,6 @@ public class VistaRegistro extends javax.swing.JFrame implements ObservadorRegis
     private javax.swing.JButton color3;
     private javax.swing.JButton color4;
     private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -593,6 +614,7 @@ public class VistaRegistro extends javax.swing.JFrame implements ObservadorRegis
     private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel8;
     private javax.swing.JLabel lblAvatar;
+    private javax.swing.JLabel lblNombre;
     private javax.swing.JLabel separador;
     private javax.swing.JLabel separador1;
     private javax.swing.JLabel separador2;
@@ -605,12 +627,12 @@ public class VistaRegistro extends javax.swing.JFrame implements ObservadorRegis
 
     @Override
     public void mostrarMensaje(String mensaje) {
-    JOptionPane.showMessageDialog(this, mensaje, "Notificacion", JOptionPane.INFORMATION_MESSAGE);
+        JOptionPane.showMessageDialog(this, mensaje, "Notificacion", JOptionPane.INFORMATION_MESSAGE);
     }
 
     @Override
     public void mostrarError(String mensaje) {
-    JOptionPane.showMessageDialog(this, mensaje, "Error", JOptionPane.ERROR_MESSAGE);
+        JOptionPane.showMessageDialog(this, mensaje, "Error", JOptionPane.ERROR_MESSAGE);
     }
 
 }
