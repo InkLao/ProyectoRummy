@@ -8,8 +8,11 @@ import comunicacion.FachadaCore;
 import dtos.ModeloRegistroDTO;
 import dtos.RespuestaDTO;
 import java.awt.Color;
+import java.io.IOException;
 import java.util.List;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 
 /**
@@ -30,9 +33,11 @@ public class ModeloRegistro implements IModeloRegistro, ObservadorModeloRegistro
 
     public ModeloRegistro(FachadaCore core) {
         this.core = core;
+        this.nombre="";
         this.listaAvatars = new ArrayList<>();
         this.colores = new ArrayList<>();
         this.estado = true;
+        this.visible=false;
         this.setColores();
         this.setListaAvatars();
     }
@@ -92,6 +97,7 @@ public class ModeloRegistro implements IModeloRegistro, ObservadorModeloRegistro
 
     public void setNombre(String nombre) {
         this.nombre = nombre;
+        this.notificar();
     }
 
     public static String extractRelativePath(String fullPath) {
@@ -151,7 +157,10 @@ public class ModeloRegistro implements IModeloRegistro, ObservadorModeloRegistro
     public void actualizarModeloRegistro(RespuestaDTO respuesta) {
         if (!respuesta.isExito()) {
             this.notificarError(respuesta.getMensaje());
+            this.setEstado(false);
+            return;
         }
+
         ModeloRegistroDTO modeloRegistroDTO = (ModeloRegistroDTO) respuesta.getDatos();
         this.colores = modeloRegistroDTO.getColores();
         this.nombre = modeloRegistroDTO.getNombre();
@@ -162,7 +171,13 @@ public class ModeloRegistro implements IModeloRegistro, ObservadorModeloRegistro
     }
 
     public void registrarJugador() {
-        core.crearJugador(nombre, rutaAvatar, colores);
+        try {
+            core.crearJugador(nombre, rutaAvatar, colores);
+        } catch (IllegalArgumentException ex) {
+            this.notificarError(ex.getMessage());
+        } catch (IOException ex) {
+            this.notificarError(ex.getMessage());
+        }
     }
 
     public void notificarError(String mensaje) {

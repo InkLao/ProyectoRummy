@@ -7,8 +7,11 @@ package configurarPartidaMVC;
 import comunicacion.FachadaCore;
 import dtos.ModeloConfiguracionDTO;
 import dtos.RespuestaDTO;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -89,7 +92,13 @@ public class ModeloConfigurarPartida implements IModeloConfigurarPartida, Observ
     }
 
     public void asignarConfiguracionPartida() {
-        core.enviarConfiguracionPartida(rangoFichas, numeroComodines);
+        try {
+            core.enviarConfiguracionPartida(rangoFichas, numeroComodines);
+        } catch (IllegalArgumentException ex) {
+            this.notificarError(ex.getMessage());
+        } catch (IOException ex) {
+            this.notificarError(ex.getMessage());
+        }
     }
 
     public void validarDatos() {

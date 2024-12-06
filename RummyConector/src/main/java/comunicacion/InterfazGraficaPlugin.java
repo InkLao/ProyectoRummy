@@ -5,6 +5,7 @@
 package comunicacion;
 
 import java.awt.Color;
+import java.io.IOException;
 import java.util.List;
 
 /**
@@ -13,9 +14,9 @@ import java.util.List;
  */
 public interface InterfazGraficaPlugin {
 
-    public void crearJugador(String nombre, String avatar, List<Color> colores);
-    public void encontrarPartida();
-    public void enviarConfiguracionPartida(int rango, int numeroComodines);
+    public void crearJugador(String nombre, String avatar, List<Color> colores) throws IllegalArgumentException, IOException;
+    public void encontrarPartida() throws IllegalArgumentException, IOException;
+    public void enviarConfiguracionPartida(int rango, int numeroComodines) throws IllegalArgumentException, IOException;
 
 
 }
