@@ -46,7 +46,6 @@ public class VistaMenuPrincipal extends javax.swing.JFrame implements Observador
         btnUnirsePartida = new javax.swing.JButton();
         btnConfiguracion = new javax.swing.JButton();
         btnSalir = new javax.swing.JButton();
-        btnIniciarPartida = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -61,7 +60,7 @@ public class VistaMenuPrincipal extends javax.swing.JFrame implements Observador
 
         btnUnirsePartida.setText("UNIRSE A PARTIDA");
 
-        btnConfiguracion.setText("CONFIGURACIÓN");
+        btnConfiguracion.setText("CONFIGURAR PARTIDA");
         btnConfiguracion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnConfiguracionActionPerformed(evt);
@@ -75,13 +74,6 @@ public class VistaMenuPrincipal extends javax.swing.JFrame implements Observador
             }
         });
 
-        btnIniciarPartida.setText("INICIAR PARTIDA");
-        btnIniciarPartida.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnIniciarPartidaActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -91,7 +83,6 @@ public class VistaMenuPrincipal extends javax.swing.JFrame implements Observador
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(btnIniciarPartida, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(btnUnirsePartida, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(btnConfiguracion, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(btnSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -105,15 +96,13 @@ public class VistaMenuPrincipal extends javax.swing.JFrame implements Observador
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addGap(85, 85, 85)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(71, 71, 71)
-                .addComponent(btnIniciarPartida, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addGap(72, 72, 72)
                 .addComponent(btnUnirsePartida, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(29, 29, 29)
                 .addComponent(btnConfiguracion, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(29, 29, 29)
                 .addComponent(btnSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(160, Short.MAX_VALUE))
+                .addContainerGap(232, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -137,10 +126,6 @@ public class VistaMenuPrincipal extends javax.swing.JFrame implements Observador
         dispose();
     }//GEN-LAST:event_btnSalirActionPerformed
 
-    private void btnIniciarPartidaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIniciarPartidaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnIniciarPartidaActionPerformed
-
     private void btnConfiguracionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfiguracionActionPerformed
         controlMenuPrincipal.mostraConfiguracionPartida();
     }//GEN-LAST:event_btnConfiguracionActionPerformed
@@ -148,7 +133,6 @@ public class VistaMenuPrincipal extends javax.swing.JFrame implements Observador
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnConfiguracion;
-    private javax.swing.JButton btnIniciarPartida;
     private javax.swing.JButton btnSalir;
     private javax.swing.JButton btnUnirsePartida;
     private javax.swing.JLabel jLabel1;
