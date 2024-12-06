@@ -37,6 +37,7 @@ public class ModeloConfigurarPartida implements IModeloConfigurarPartida, Observ
     public void actualizarModeloConfiguracion(RespuestaDTO respuesta) {
         if (!respuesta.isExito()) {
             this.notificarError(respuesta.getMensaje());
+            return;
         }
         ModeloConfiguracionDTO modeloRegistroDTO = (ModeloConfiguracionDTO) respuesta.getDatos();
         this.rangoFichas = modeloRegistroDTO.getRangoFichas();

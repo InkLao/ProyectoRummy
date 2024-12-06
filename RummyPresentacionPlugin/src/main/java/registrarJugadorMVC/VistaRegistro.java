@@ -37,8 +37,9 @@ public class VistaRegistro extends javax.swing.JFrame implements ObservadorRegis
     public VistaRegistro(ControladorRegistro controladorRegistro) {
         initComponents();
         this.setLocationRelativeTo(null);
+        this.setTitle("Registrar Jugador");
+        this.setResizable(false);
         this.controladorRegistro = controladorRegistro;
-        this.lblNombre.setText("Nombre:");
 
         this.cbAvatars.addActionListener(new ActionListener() {
             @Override
