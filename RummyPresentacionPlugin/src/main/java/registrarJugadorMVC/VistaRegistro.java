@@ -305,6 +305,7 @@ public class VistaRegistro extends javax.swing.JFrame implements ObservadorRegis
         );
 
         jPanel7.setBackground(new java.awt.Color(48, 48, 48));
+        jPanel7.setPreferredSize(null);
 
         jPanel2.setBackground(new java.awt.Color(48, 48, 48));
 
