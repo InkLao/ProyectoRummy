@@ -9,5 +9,9 @@ package juegoMVC;
  * @author carli
  */
 public interface ObservadorJuego {
-    
+    public void actualizar(IModeloJuego modeloConfigurarPartida);
+
+    public void mostrarMensaje(String mensaje);
+
+    public void mostrarError(String mensaje);
 }
