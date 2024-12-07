@@ -103,6 +103,7 @@ public class ModeloConfigurarPartida implements IModeloConfigurarPartida, Observ
     }
 
     public void validarDatos() {
+        System.out.println(numeroComodines);
         try {
             if (numeroComodines < 2) {
                 throw new IllegalArgumentException("El número de comodines no puede ser menor a 2.");

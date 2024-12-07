@@ -4,6 +4,9 @@
  */
 package configurarPartidaMVC;
 
+import java.text.ParseException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 
@@ -12,9 +15,9 @@ import javax.swing.JOptionPane;
  * @author carli
  */
 public class VistaConfigurarPartida extends javax.swing.JFrame implements ObservadorConfiguracion {
-
+    
     private ControladorConfigurarPartida configurarPartida;
-
+    
     public VistaConfigurarPartida(ControladorConfigurarPartida configurarPartida) {
         initComponents();
         this.setLocationRelativeTo(null);
@@ -197,7 +200,15 @@ public class VistaConfigurarPartida extends javax.swing.JFrame implements Observ
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCrearPartidaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCrearPartidaActionPerformed
-        configurarPartida.seleccionarNumeroComodines((int) JsNumeroComodines.getValue());
+        try {
+            JsNumeroComodines.commitEdit();
+            configurarPartida.seleccionarNumeroComodines((int) JsNumeroComodines.getValue());
+            
+        } catch (ParseException ex) {
+            this.mostrarError("Valor no valido");
+            return;
+        }
+        System.out.println(JsNumeroComodines.getValue());
         configurarPartida.seleccionarRango(obtenerValorRango((String) cbRangoFichas.getSelectedItem()));
         configurarPartida.asignarConfiguracionPartida();
     }//GEN-LAST:event_btnCrearPartidaActionPerformed
@@ -229,20 +240,20 @@ public class VistaConfigurarPartida extends javax.swing.JFrame implements Observ
             DefaultComboBoxModel<String> model = new DefaultComboBoxModel<>(modeloConfigurarPartida.getRangosDisponibles().toArray(new String[0]));
             cbRangoFichas.setModel(model);
         }
-
+        
         this.setVisible(modeloConfigurarPartida.isVisible());
     }
-
+    
     @Override
     public void mostrarMensaje(String mensaje) {
         JOptionPane.showMessageDialog(this, mensaje, "Notificacion", JOptionPane.INFORMATION_MESSAGE);
     }
-
+    
     @Override
     public void mostrarError(String mensaje) {
         JOptionPane.showMessageDialog(this, mensaje, "Error", JOptionPane.ERROR_MESSAGE);
     }
-
+    
     private int obtenerValorRango(String str) {
         String[] partes = str.split("-");
 
